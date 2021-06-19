@@ -36,8 +36,8 @@ jobs:
         uses: actions/cache@v2.1.6
         with:
           path: js/node_modules
-          key:          ${{ runner.OS }}-node-${{ matrix.node }}-v1-${{ hashFiles('js/yarn.lock') }}
-          restore-keys: ${{ runner.OS }}-node-${{ matrix.node }}-v1-
+          key:          ${{ runner.OS }}-node-${{ matrix.node }}-v2-${{ hashFiles('js/yarn.lock') }}
+          restore-keys: ${{ runner.OS }}-node-${{ matrix.node }}-v2-
       - name: "Fetch deps"
         run: |
           cd js
@@ -57,7 +57,7 @@ jobs:
         env:
           CI: true
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1.5.0
+        uses: codecov/codecov-action@v1.5.2
         with:
           file: ./js/coverage/coverage-final.json
           flags: js.unittests
