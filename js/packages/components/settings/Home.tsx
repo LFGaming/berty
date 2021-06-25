@@ -276,6 +276,7 @@ const HomeBodySettings: React.FC<{}> = () => {
 							iconColor={color.blue}
 							toggled
 							disabled
+						/>
 						<ButtonSetting
 							name={t('settings.home.header-center-button')}
 							icon='options-2-outline'
