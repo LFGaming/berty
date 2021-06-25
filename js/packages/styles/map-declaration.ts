@@ -10,7 +10,7 @@ import { mapBorder } from './map-border'
 export const defaultStylesDeclaration: Declaration = {
 	colors: {
 		default: {
-			white: '#FFFFFF',
+			white: '#2B2E4D',
 			black: '#FFFFFF',
 			blue: '#525BEC',
 			red: '#F64278',
