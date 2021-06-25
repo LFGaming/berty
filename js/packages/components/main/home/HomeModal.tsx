@@ -206,7 +206,7 @@ export const HomeModal: React.FC<{
 							<View
 								style={[
 									{
-										backgroundColor: 'white',
+										backgroundColor: color.white,
 										flex: 1,
 									},
 									border.radius.top.medium,
@@ -218,7 +218,7 @@ export const HomeModal: React.FC<{
 								<View
 									style={[
 										{
-											backgroundColor: color.white,
+											backgroundColor: '#EDEFF3',
 											height: 5,
 											width: 70,
 											alignSelf: 'center',
