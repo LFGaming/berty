@@ -164,7 +164,7 @@ const MessageInvitationReceived: React.FC<{ message: InteractionGroupInvitation 
 					icon='close-outline'
 					color={color.red}
 					title='REFUSE'
-					backgroundColor={color.grey}
+					backgroundColor={color.lightgrey}
 					styleOpacity={0.6}
 					disabled
 				/>
@@ -174,7 +174,7 @@ const MessageInvitationReceived: React.FC<{ message: InteractionGroupInvitation 
 					icon='checkmark-outline'
 					color={error ? color.grey : !conv ? color.blue : color.green}
 					title={!conv ? 'ACCEPT' : 'ACCEPTED'}
-					backgroundColor={error ? color.red : !conv ? color.light.blue : color.light.green}
+					backgroundColor={error ? color.white : !conv ? color.light.blue : color.light.green}
 					styleOpacity={acceptDisabled ? 0.6 : undefined}
 					disabled={acceptDisabled ? true : false}
 				/>
