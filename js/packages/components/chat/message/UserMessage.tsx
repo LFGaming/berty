@@ -81,7 +81,7 @@ const getUserMessageState = (
 				? color.grey
 				: color.blue
 			: color.blue
-		msgBackgroundColor = inte.isMine ? (inte.acknowledged ? color.blue : color.white) : '#E2E4FF'
+		msgBackgroundColor = inte.isMine ? (inte.acknowledged ? color.blue : color.default.white) :
 		msgBorderColor = inte.isMine && (cmd ? border.color.grey : border.color.blue)
 
 		isWithinCollapseDuration =
