@@ -29,12 +29,12 @@ export const defaultStylesDeclaration: Declaration = {
 		},
 		dark: {
 			white: '#2B2E4D',
-			black: '#383B62',
-			blue: '#3E49EA',
+			black: '#FFFFFF',
+			blue: '#525BEC',
 			red: '#F64278',
 			yellow: '#FFBF47',
 			green: '#20D6B5',
-			grey: '#3F426D',
+			grey: '#BCBCBC',
 		},
 	},
 	sides: {
