@@ -218,7 +218,7 @@ export const HomeModal: React.FC<{
 								<View
 									style={[
 										{
-											backgroundColor: '#EDEFF3',
+											backgroundColor: color.white,
 											height: 5,
 											width: 70,
 											alignSelf: 'center',
