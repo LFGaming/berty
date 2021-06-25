@@ -129,7 +129,7 @@ const GroupInfo: React.FC<GroupInfoProps> = ({ onGroupNameChange, layout }) => {
 						/>
 						<Text
 							style={[
-								text.color.black,
+								text.color.red,
 								margin.left.medium,
 								row.item.justify,
 								_styles.groupInfoAboutGroupsText,
