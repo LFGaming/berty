@@ -17,7 +17,7 @@ export const defaultStylesDeclaration: Declaration = {
 			yellow: '#FFBF47',
 			green: '#20D6B5',
 			grey: '#3F426D',
-			chatbgin: '#3D4165',
+			chatbgin: '#7478A1',
 		},
 		light: {
 			white: '#FFFFFF',
