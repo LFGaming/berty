@@ -280,7 +280,7 @@ const HomeBodySettings: React.FC<{}> = () => {
 						icon='moon-outline'
 						iconColor={color.blue}
 						toggled
-						disabled
+						onPress={() => navigation.navigate('Settings.DevTools')}
 					/>
 					<ButtonSetting
 						name={t('settings.home.header-center-button')}
