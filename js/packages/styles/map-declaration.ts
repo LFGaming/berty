@@ -11,7 +11,7 @@ export const defaultStylesDeclaration: Declaration = {
 	colors: {
 		default: {
 			white: '#2B2E4D',
-			black: '#FFFFFF',
+			black: '#F64278',
 			blue: '#525BEC',
 			red: '#F64278',
 			yellow: '#FFBF47',
@@ -19,6 +19,7 @@ export const defaultStylesDeclaration: Declaration = {
 			grey: '#3F426D',
 			chatbgin: '#7478A1',
 			lightgrey: '#8A8CAC',
+			chattext: '#2B2E4D',
 		},
 		light: {
 			white: '#FFFFFF',
@@ -30,6 +31,7 @@ export const defaultStylesDeclaration: Declaration = {
 			grey: '#EDEFF3',
 			chatbgin: '#20D6B5',
 			lightgrey: '#8A8CAC',
+			chattext: '#2B2E4D',
 		},
 		dark: {
 			white: '#2B2E4D',
@@ -41,6 +43,7 @@ export const defaultStylesDeclaration: Declaration = {
 			grey: '#3F426D',
 			chatbgin: '#20D6B5',
 			lightgrey: '#8A8CAC',
+			chattext: '#2B2E4D',
 		},
 	},
 	sides: {
