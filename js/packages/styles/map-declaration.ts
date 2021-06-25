@@ -11,7 +11,7 @@ export const defaultStylesDeclaration: Declaration = {
 	colors: {
 		default: {
 			white: '#2B2E4D',
-			black: '#FFFFFF',
+			black: '#000000',
 			blue: '#525BEC',
 			red: '#F64278',
 			yellow: '#FFBF47',
