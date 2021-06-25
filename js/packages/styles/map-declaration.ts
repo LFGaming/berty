@@ -10,16 +10,16 @@ import { mapBorder } from './map-border'
 export const defaultStylesDeclaration: Declaration = {
 	colors: {
 		default: {
-			white: '#2b2e4d',
-			black: '#383B62',
+			white: '#2B2E4D',
+			black: '#FFFFFF',
 			blue: '#525BEC',
 			red: '#F64278',
 			yellow: '#FFBF47',
 			green: '#20D6B5',
-			grey: '#979797',
+			grey: '#757575',
 		},
 		light: {
-			white: '#2b2e4d',
+			white: '#FFFFFF',
 			black: '#383B62',
 			blue: '#CED2FF',
 			red: '#FFCED8',
@@ -28,7 +28,7 @@ export const defaultStylesDeclaration: Declaration = {
 			grey: '#EDEFF3',
 		},
 		dark: {
-			white: '#2b2e4d',
+			white: '#2B2E4D',
 			black: '#383B62',
 			blue: '#3E49EA',
 			red: '#F64278',
