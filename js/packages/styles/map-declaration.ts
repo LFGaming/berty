@@ -20,6 +20,7 @@ export const defaultStylesDeclaration: Declaration = {
 			chatbgin: '#7478A1',
 			lightgrey: '#8A8CAC',
 			chattext: '#2B2E4D',
+			mediaselect: '2B2E4D',
 		},
 		light: {
 			white: '#FFFFFF',
@@ -32,6 +33,7 @@ export const defaultStylesDeclaration: Declaration = {
 			chatbgin: '#20D6B5',
 			lightgrey: '#8A8CAC',
 			chattext: '#2B2E4D',
+			mediaselect: '2B2E4D',
 		},
 		dark: {
 			white: '#2B2E4D',
@@ -44,6 +46,7 @@ export const defaultStylesDeclaration: Declaration = {
 			chatbgin: '#20D6B5',
 			lightgrey: '#8A8CAC',
 			chattext: '#2B2E4D',
+			mediaselect: '2B2E4D',
 		},
 	},
 	sides: {

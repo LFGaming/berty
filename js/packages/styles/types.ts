@@ -10,6 +10,7 @@ export type Colors<T> = {
 	chatbgin: T
 	lightgrey: T
 	chattext: T
+	mediaselect: T
 }
 
 export type ColorsBrightness<T> = {
