@@ -275,15 +275,7 @@ const HomeBodySettings: React.FC<{}> = () => {
 							icon='moon-outline'
 							iconColor={color.blue}
 							toggled
-							varToggle={ctx.persistentOptions?.darkmode.enable}
-							actionToggle={async () => {
-								await ctx.setPersistentOption({
-									type: PersistentOptionsKeys.Darkmode,
-									payload: {
-										enable: !ctx.persistentOptions?.darkmode.enable,
-									},
-								})
-							} } />
+							disabled
 						<ButtonSetting
 							name={t('settings.home.header-center-button')}
 							icon='options-2-outline'

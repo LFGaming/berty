@@ -147,7 +147,6 @@ export enum PersistentOptionsKeys {
 	Preset = 'preset',
 	LogFilters = 'logFilters',
 	TyberHost = 'tyberHost',
-	Darkmode = 'darkmode',
 }
 
 export type PersistentOptionsI18N = {
@@ -221,9 +220,6 @@ export type PersistentOptionsTyberHost = {
 	address: string
 }
 
-export type PersistentOptionsDarkmode = {
-	enable: boolean
-}
 
 export type PersistentOptionsUpdate =
 	| {
@@ -282,10 +278,6 @@ export type PersistentOptionsUpdate =
 			type: typeof PersistentOptionsKeys.TyberHost
 			payload: PersistentOptionsTyberHost
 	  }
-	| {
-		type: typeof PersistentOptionsKeys.Darkmode
-		payload: PersistentOptionsDarkmode
-  	}
 
 export type PersistentOptions = {
 	[PersistentOptionsKeys.I18N]: PersistentOptionsI18N
@@ -302,7 +294,6 @@ export type PersistentOptions = {
 	[PersistentOptionsKeys.Preset]: PersistentOptionsPreset
 	[PersistentOptionsKeys.LogFilters]: PersistentOptionsLogFilters
 	[PersistentOptionsKeys.TyberHost]: PersistentOptionsTyberHost
-	[PersistentOptionsKeys.Darkmode]: PersistentOptionsDarkmode
 }
 
 export const defaultPersistentOptions = (): PersistentOptions => {
@@ -376,9 +367,6 @@ export const defaultPersistentOptions = (): PersistentOptions => {
 		},
 		[PersistentOptionsKeys.TyberHost]: {
 			address: Platform.OS === 'android' ? '10.0.2.2:4242' : '127.0.0.1:4242',
-		},
-		[PersistentOptionsKeys.Darkmode]: {
-			enable: false,
 		},
 	}
 }
