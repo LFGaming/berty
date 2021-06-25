@@ -65,7 +65,7 @@ const getUserMessageState = (
 	const sentDate = pbDateToNum(inte?.sentDate)
 
 	let name = ''
-	let baseColor = color.blue
+	let baseColor = color.chatbgin
 	let isFollowupMessage: boolean | undefined = false
 	let isFollowedMessage: boolean | undefined = false
 	let isWithinCollapseDuration: number | boolean | null | undefined = false
@@ -79,8 +79,8 @@ const getUserMessageState = (
 				? color.white
 				: cmd
 				? color.grey
-				: color.blue
-			: color.blue
+				: color.green
+			: color.red
 		msgBackgroundColor = inte.isMine ? (inte.acknowledged ? color.blue : color.white) : color.default.chatbgin
 		msgBorderColor = inte.isMine && (cmd ? border.color.grey : border.color.blue)
 
