@@ -161,7 +161,7 @@ export const ManageGroupInvitation: React.FC<{
 								margin.top.medium,
 								row.fill,
 								padding.vertical.scale(12),
-								{ backgroundColor: '#FF0007' },
+								{ backgroundColor: '#E8E9FC99' },
 							]}
 						>
 							<TextInput
