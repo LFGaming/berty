@@ -11,7 +11,7 @@ export const Provider: React.FC = ({ children }) => (
 				{
 					strict: {
 						'text-font-family': 'Open Sans',
-						'text-paragraph-1-font-weight': '1000',
+						'text-paragraph-1-font-weight': '600',
 					},
 				} as any
 			}
