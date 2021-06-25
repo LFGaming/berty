@@ -279,7 +279,6 @@ const HomeBodySettings: React.FC<{}> = () => {
 						name={t('settings.mode.dark-mode-button')}
 						icon='moon-outline'
 						iconColor={color.blue}
-						toggled
 						onPress={() => navigation.navigate('Settings.DevTools')}
 					/>
 					<ButtonSetting
