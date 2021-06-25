@@ -7,6 +7,7 @@ export type Colors<T> = {
 	yellow: T
 	green: T
 	grey: T
+	chatbgin: T
 }
 
 export type ColorsBrightness<T> = {
