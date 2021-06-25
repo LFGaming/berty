@@ -16,7 +16,7 @@ export const defaultStylesDeclaration: Declaration = {
 			red: '#F64278',
 			yellow: '#FFBF47',
 			green: '#20D6B5',
-			grey: '#757575',
+			grey: '#BCBCBC',
 		},
 		light: {
 			white: '#FFFFFF',
