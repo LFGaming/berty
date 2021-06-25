@@ -16,7 +16,7 @@ export const defaultStylesDeclaration: Declaration = {
 			red: '#F64278',
 			yellow: '#FFBF47',
 			green: '#20D6B5',
-			grey: '#BCBCBC',
+			grey: '#EDEFF3',
 		},
 		light: {
 			white: '#FFFFFF',
@@ -29,12 +29,12 @@ export const defaultStylesDeclaration: Declaration = {
 		},
 		dark: {
 			white: '#2B2E4D',
-			black: '#FFFFFF',
-			blue: '#525BEC',
+			black: '#383B62',
+			blue: '#3E49EA',
 			red: '#F64278',
 			yellow: '#FFBF47',
 			green: '#20D6B5',
-			grey: '#BCBCBC',
+			grey: '#3F426D',
 		},
 	},
 	sides: {
