@@ -1,6 +1,6 @@
 import React from 'react'
 import { ApplicationProvider } from '@ui-kitten/components'
-import { mapping, light, dark } from '@eva-design/eva'
+import { mapping, light } from '@eva-design/eva'
 import { StatusBarWrapper } from './shared-components'
 
 export const Provider: React.FC = ({ children }) => (
