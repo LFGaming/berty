@@ -127,7 +127,7 @@ export const GallerySection: React.FC<{
 						flexWrap: 'wrap',
 						alignItems: 'center',
 						justifyContent: 'center',
-						backgroundColor: '#FEFEFF',
+						backgroundColor: color.mediaselect,
 					}}
 				>
 					{galleryContents.map((content) => (
