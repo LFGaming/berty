@@ -15,7 +15,7 @@ export const Provider: React.FC = ({ children }) => (
 					},
 				} as any
 			}
-			theme={light}
+			theme={dark}
 		>
 			<StatusBarWrapper />
 			{children}
