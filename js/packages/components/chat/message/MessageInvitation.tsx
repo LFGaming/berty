@@ -162,9 +162,9 @@ const MessageInvitationReceived: React.FC<{ message: InteractionGroupInvitation 
 					onPress={undefined} // TODO: Command to refuse invitation
 					activeOpacity={!conv ? 0.2 : 1}
 					icon='close-outline'
-					color={color.grey}
+					color={color.red}
 					title='REFUSE'
-					backgroundColor={color.white}
+					backgroundColor={color.green}
 					styleOpacity={0.6}
 					disabled
 				/>
