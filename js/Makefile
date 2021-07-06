@@ -354,11 +354,11 @@ _write_gen_sum:
 ios/Frameworks/Bertybridge.framework: $(bridge_src)
 	cd .. && $(GO) mod download
 	cd .. && $(GO) install golang.org/x/mobile/cmd/gobind
-	cd .. && $(GO) run golang.org/x/mobile/cmd/gomobile init
+	cd .. && ANDROID_HOME= ANDROID_NDK_HOME= $(GO) run golang.org/x/mobile/cmd/gomobile init
 	mkdir -p ios/Frameworks
 	cd .. && \
 		PATH="$(PATH):`go env GOPATH`/bin" \
-		GO111MODULE=on \
+		GO111MODULE=on ANDROID_HOME= ANDROID_NDK_HOME= \
 		$(GO) run golang.org/x/mobile/cmd/gomobile bind \
 			-o js/$@ \
 			-v $(ext_ldflags) \
