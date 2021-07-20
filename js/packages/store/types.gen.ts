@@ -271,13 +271,6 @@ export type MessengerMethodsHooks = {
 		done: boolean
 		called: boolean
 	}
-	useGetUsername: () => {
-		error: any
-		call: (req?: beapi.messenger.GetUsername.IRequest) => void
-		reply: beapi.messenger.GetUsername.IReply | null
-		done: boolean
-		called: boolean
-	}
 	useMediaGetRelated: () => {
 		error: any
 		call: (req?: beapi.messenger.MediaGetRelated.IRequest) => void
@@ -289,6 +282,13 @@ export type MessengerMethodsHooks = {
 		error: any
 		call: (req?: beapi.messenger.MessageSearch.IRequest) => void
 		reply: beapi.messenger.MessageSearch.IReply | null
+		done: boolean
+		called: boolean
+	}
+	useTyberHostAttach: () => {
+		error: any
+		call: (req?: beapi.messenger.TyberHostAttach.IRequest) => void
+		reply: beapi.messenger.TyberHostAttach.IReply | null
 		done: boolean
 		called: boolean
 	}

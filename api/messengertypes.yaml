@@ -84,9 +84,6 @@ http:
  - selector: berty.messenger.v1.MessengerService.BannerQuote
    post: /berty.messenger.v1/MessengerService/BannerQuote
    body: "*"
- - selector: berty.messenger.v1.MessengerService.GetUsername
-   post: /berty.messenger.v1/MessengerService/GetUsername
-   body: "*"
  - selector: berty.messenger.v1.MessengerService.InstanceExportData
    post: /berty.messenger.v1/MessengerService/InstanceExportData
    body: "*"
@@ -101,4 +98,10 @@ http:
    body: "*"
  - selector: berty.messenger.v1.MessengerService.MessageSearch
    post: /berty.messenger.v1/MessengerService/MessageSearch
+   body: "*"
+ - selector: berty.messenger.v1.MessengerService.TyberHostSearch
+   post: /berty.messenger.v1/MessengerService/TyberHostSearch
+   body: "*"
+ - selector: berty.messenger.v1.MessengerService.TyberHostAttach
+   post: /berty.messenger.v1/MessengerService/TyberHostAttach
    body: "*"

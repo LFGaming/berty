@@ -36,6 +36,9 @@ service AccountService {
   // ImportAccount imports existing data.
   rpc ImportAccount (ImportAccount.Request) returns (ImportAccount.Reply);
 
+  // ImportAccount imports existing data.
+  rpc ImportAccountWithProgress (ImportAccountWithProgress.Request) returns (stream ImportAccountWithProgress.Reply);
+
   // CreateAccount creates a new account.
   rpc CreateAccount (CreateAccount.Request) returns (CreateAccount.Reply);
 
@@ -47,6 +50,9 @@ service AccountService {
 
   // LogfileList returns a list of logfiles that can be used with Tyber.
   rpc LogfileList (LogfileList.Request) returns (LogfileList.Reply);
+
+  // GetUsername returns the name of the device/user using Android/iOS/universal API
+  rpc GetUsername(GetUsername.Request) returns (GetUsername.Reply);
 }
 
 message OpenAccount {
@@ -121,6 +127,20 @@ message ImportAccount {
   }
 }
 
+message ImportAccountWithProgress {
+  message Request {
+    string account_id = 1 [(gogoproto.customname) = "AccountID"];
+    string account_name = 2;
+    string backup_path = 3;
+    repeated string args = 4;
+    string logger_filters = 5;
+  }
+  message Reply {
+    berty.protocol.v1.Progress progress = 1;
+    AccountMetadata account_metadata = 2;
+  }
+}
+
 message CreateAccount {
   message Request {
     string account_id = 1 [(gogoproto.customname) = "AccountID"];
@@ -171,5 +191,12 @@ message LogfileList {
       bool latest = 7;
       string errs = 8;
     }
+  }
+}
+
+message GetUsername {
+  message Request {}
+  message Reply {
+    string username = 1;
   }
 }

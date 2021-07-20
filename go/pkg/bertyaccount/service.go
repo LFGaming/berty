@@ -2,7 +2,7 @@ package bertyaccount
 
 import (
 	"context"
-	fmt "fmt"
+	"fmt"
 	"sync"
 
 	"go.uber.org/zap"
@@ -12,6 +12,7 @@ import (
 	"berty.tech/berty/v2/go/internal/notification"
 	proximity "berty.tech/berty/v2/go/internal/proximitytransport"
 	"berty.tech/berty/v2/go/pkg/bertybridge"
+	"berty.tech/berty/v2/go/pkg/messengertypes"
 	"berty.tech/berty/v2/go/pkg/tyber"
 )
 
@@ -21,11 +22,14 @@ var _ AccountServiceServer = (*service)(nil)
 type Service interface {
 	AccountServiceServer
 
-	// WakeUp should be used for background task or similar task
+	// WakeUp should be used for background task or similar task.
 	WakeUp(ctx context.Context) error
 
-	// Close the service
+	// Close the service.
 	Close() error
+
+	// GetMessengerClient returns the Messenger Client of the actual Berty account if there is one selected.
+	GetMessengerClient() (messengertypes.MessengerServiceClient, error)
 }
 
 type Options struct {
@@ -34,8 +38,8 @@ type Options struct {
 	ServiceClientRegister bertybridge.ServiceClientRegister
 	LifecycleManager      *lifecycle.Manager
 	NotificationManager   notification.Manager
-	BleDriver             proximity.NativeDriver
-	NBDriver              proximity.NativeDriver
+	BleDriver             proximity.ProximityDriver
+	NBDriver              proximity.ProximityDriver
 	Logger                *zap.Logger
 }
 
@@ -51,8 +55,8 @@ type service struct {
 	initManager      *initutil.Manager
 	lifecycleManager *lifecycle.Manager
 	sclients         bertybridge.ServiceClientRegister
-	bleDriver        proximity.NativeDriver
-	nbDriver         proximity.NativeDriver
+	bleDriver        proximity.ProximityDriver
+	nbDriver         proximity.ProximityDriver
 }
 
 func (o *Options) applyDefault() {

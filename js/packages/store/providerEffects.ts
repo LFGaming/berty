@@ -11,11 +11,8 @@ import { Service } from '@berty-tech/grpc-bridge'
 import GoBridge, { GoBridgeDefaultOpts, GoBridgeOpts } from '@berty-tech/go-bridge'
 
 import ExternalTransport from './externalTransport'
-import {
-	createNewAccount,
-	refreshAccountList,
-	closeAccountWithProgress,
-} from './effectableCallbacks'
+import { refreshAccountList, closeAccountWithProgress } from './effectableCallbacks'
+import { updateAccount, setPersistentOption } from './providerCallbacks'
 import {
 	defaultPersistentOptions,
 	MessengerActions,
@@ -24,6 +21,7 @@ import {
 	PersistentOptionsKeys,
 	reducerAction,
 	accountService,
+	MsgrState,
 } from './context'
 
 export const openAccountWithProgress = async (
@@ -35,7 +33,6 @@ export const openAccountWithProgress = async (
 		.openAccountWithProgress({
 			args: bridgeOpts.cliArgs,
 			accountId: selectedAccount?.toString(),
-			loggerFilters: bridgeOpts.logFilters,
 		})
 		.then(async (stream) => {
 			stream.onMessage((msg, _) => {
@@ -105,7 +102,7 @@ const getPersistentOptions = async (
 
 export const tyberHostStorageKey = 'global-storage_tyber-host'
 
-export const initialLaunch = async (dispatch: (arg0: reducerAction) => void, embedded: boolean) => {
+export const initBridge = async () => {
 	const tyberHost =
 		(await AsyncStorage.getItem(tyberHostStorageKey)) ||
 		defaultPersistentOptions().tyberHost.address
@@ -114,13 +111,14 @@ export const initialLaunch = async (dispatch: (arg0: reducerAction) => void, emb
 		.catch((err) => {
 			console.warn('unable to init bridge ', Object.keys(err), err.domain)
 		})
+}
+
+export const initialLaunch = async (dispatch: (arg0: reducerAction) => void, embedded: boolean) => {
+	await initBridge()
 	const f = async () => {
 		const accounts = await refreshAccountList(embedded, dispatch)
 
-		if (Object.keys(accounts).length === 0) {
-			await createNewAccount(embedded, dispatch, null)
-		} else if (Object.keys(accounts).length > 0) {
-			console.log('accountsLength > 0 and dispatch SetNextAccount')
+		if (Object.keys(accounts).length > 0) {
 			let accountSelected: any = null
 			Object.values(accounts).forEach((account) => {
 				if (!accountSelected) {
@@ -142,6 +140,8 @@ export const initialLaunch = async (dispatch: (arg0: reducerAction) => void, emb
 				})
 			dispatch({ type: MessengerActions.SetNextAccount, payload: accountSelected.accountId })
 			return
+		} else {
+			dispatch({ type: MessengerActions.SetStateOnBoardingReady })
 		}
 	}
 
@@ -178,6 +178,16 @@ export const openingDaemon = async (
 		return
 	}
 
+	let tyberHost = ''
+	try {
+		tyberHost = (await AsyncStorage.getItem(tyberHostStorageKey)) || ''
+		if (tyberHost !== '') {
+			console.warn(`connecting to ${tyberHost}`)
+		}
+	} catch (e) {
+		console.warn(e)
+	}
+
 	// Apply store options
 	let bridgeOpts: GoBridgeOpts
 	try {
@@ -197,6 +207,12 @@ export const openingDaemon = async (
 				? [...bridgeOpts.cliArgs!, '--p2p.multipeer-connectivity=false']
 				: [...bridgeOpts.cliArgs!, '--p2p.multipeer-connectivity=true']
 
+		// set nearby flag
+		bridgeOpts.cliArgs =
+			opts?.nearby && !opts.nearby.enable
+				? [...bridgeOpts.cliArgs!, '--p2p.nearby=false']
+				: [...bridgeOpts.cliArgs!, '--p2p.nearby=true']
+
 		// set tor flag
 		bridgeOpts.cliArgs = opts?.tor?.flag.length
 			? [...bridgeOpts.cliArgs!, `--tor.mode=${opts?.tor?.flag}`]
@@ -208,7 +224,10 @@ export const openingDaemon = async (
 			: [...bridgeOpts.cliArgs!, '--log.format=console']
 
 		// set tyber host flag
-		if (opts?.tyberHost?.address) {
+		if (tyberHost) {
+			bridgeOpts.cliArgs = bridgeOpts.cliArgs.filter((arg) => !arg.startsWith('--log.tyber-host='))
+			bridgeOpts.cliArgs = [...bridgeOpts.cliArgs!, `--log.tyber-host=${tyberHost}`]
+		} else if (opts?.tyberHost?.address) {
 			bridgeOpts.cliArgs = bridgeOpts.cliArgs.filter((arg) => !arg.startsWith('--log.tyber-host='))
 			bridgeOpts.cliArgs = [...bridgeOpts.cliArgs!, `--log.tyber-host=${opts?.tyberHost?.address}`]
 		}
@@ -356,11 +375,13 @@ export const openingClients = (
 }
 
 // handle state OpeningMarkConversationsAsClosed
-export const openingCloseConvos = (
+export const openingCloseConvos = async (
 	appState: MessengerAppState,
+	embedded: boolean,
 	dispatch: (arg0: reducerAction) => void,
 	client: ServiceClientType<beapi.messenger.MessengerService> | null,
 	conversations: { [key: string]: any },
+	welcomeModal: boolean,
 ) => {
 	if (appState !== MessengerAppState.OpeningMarkConversationsAsClosed) {
 		return
@@ -377,9 +398,46 @@ export const openingCloseConvos = (
 		})
 	}
 
-	dispatch({ type: MessengerActions.SetStateReady })
+	welcomeModal
+		? dispatch({ type: MessengerActions.SetStatePreReady })
+		: dispatch({ type: MessengerActions.SetStateReady })
 }
 
+// handle state PreReady
+export const updateAccountsPreReady = async (
+	state: MsgrState,
+	embedded: boolean,
+	dispatch: (arg0: reducerAction) => void,
+) => {
+	if (state.appState !== MessengerAppState.PreReady) {
+		return
+	}
+	const displayName = await AsyncStorage.getItem('displayName')
+	const preset = await AsyncStorage.getItem('preset')
+	await AsyncStorage.removeItem('displayName')
+	await AsyncStorage.removeItem('preset')
+	await AsyncStorage.removeItem('isNewAccount')
+	if (displayName) {
+		await state?.client
+			?.accountUpdate({ displayName })
+			.then(async () => {})
+			.catch((err) => console.error(err))
+		// update account in bertyaccount
+		await updateAccount(embedded, dispatch, {
+			accountName: displayName,
+			accountId: state?.selectedAccount,
+			publicKey: state?.account?.publicKey,
+		})
+	}
+	if (preset) {
+		await setPersistentOption(dispatch, state?.selectedAccount, {
+			type: PersistentOptionsKeys.Preset,
+			payload: {
+				value: preset,
+			},
+		})
+	}
+}
 // handle states DeletingClosingDaemon, ClosingDaemon
 export const closingDaemon = (
 	appState: MessengerAppState,

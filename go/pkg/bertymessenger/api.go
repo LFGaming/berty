@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/gogo/protobuf/proto"
+	"github.com/grandcat/zeroconf"
 	ipfscid "github.com/ipfs/go-cid"
 	"go.uber.org/multierr"
 	"go.uber.org/zap"
@@ -28,7 +29,6 @@ import (
 	"berty.tech/berty/v2/go/pkg/protocoltypes"
 	"berty.tech/berty/v2/go/pkg/tempdir"
 	"berty.tech/berty/v2/go/pkg/tyber"
-	"berty.tech/berty/v2/go/pkg/username"
 )
 
 func (svc *service) DevShareInstanceBertyID(ctx context.Context, req *messengertypes.DevShareInstanceBertyID_Request) (*messengertypes.DevShareInstanceBertyID_Reply, error) {
@@ -1210,12 +1210,6 @@ func (svc *service) BannerQuote(ctx context.Context, req *messengertypes.BannerQ
 	return &ret, nil
 }
 
-func (svc *service) GetUsername(ctx context.Context, req *messengertypes.GetUsername_Request) (*messengertypes.GetUsername_Reply, error) {
-	return &messengertypes.GetUsername_Reply{
-		Username: username.GetUsername(),
-	}, nil
-}
-
 func (svc *service) SendReplyOptions(ctx context.Context, req *messengertypes.SendReplyOptions_Request) (*messengertypes.SendReplyOptions_Reply, error) {
 	payload, err := messengertypes.AppMessage_TypeReplyOptions.MarshalPayload(timestampMs(time.Now()), "", nil, req.Options)
 	if err != nil {
@@ -1510,4 +1504,54 @@ func (svc *service) MessageSearch(ctx context.Context, request *messengertypes.M
 	}
 
 	return &messengertypes.MessageSearch_Reply{Results: results}, nil
+}
+
+func (svc *service) TyberHostSearch(request *messengertypes.TyberHostSearch_Request, server messengertypes.MessengerService_TyberHostSearchServer) error {
+	results := make(chan *zeroconf.ServiceEntry)
+
+	go func() {
+		resolver, err := zeroconf.NewResolver(nil)
+		if err != nil {
+			svc.logger.Error("Failed to initialize resolver:", zap.Error(err))
+			close(results)
+			return
+		}
+
+		err = resolver.Browse(server.Context(), "_tyber._tcp", "local.", results)
+		if err != nil {
+			svc.logger.Error("Failed to get results for service:", zap.Error(err))
+			close(results)
+			return
+		}
+	}()
+
+	for result := range results {
+		ipv4Addresses := make([]string, len(result.AddrIPv4))
+		ipv6Addresses := make([]string, len(result.AddrIPv6))
+
+		for i, v := range result.AddrIPv4 {
+			ipv4Addresses[i] = v.String()
+		}
+
+		for i, v := range result.AddrIPv6 {
+			ipv6Addresses[i] = v.String()
+		}
+
+		if err := server.Send(&messengertypes.TyberHostSearch_Reply{
+			Hostname: result.HostName,
+			IPv4:     ipv4Addresses,
+			IPv6:     ipv6Addresses,
+		}); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (svc *service) TyberHostAttach(ctx context.Context, request *messengertypes.TyberHostAttach_Request) (*messengertypes.TyberHostAttach_Reply, error) {
+	// TODO: attach and replay logs
+	return nil, errcode.ErrNotImplemented.Wrap(fmt.Errorf("implement me"))
+
+	// return &messengertypes.TyberHostAttach_Reply{}, nil
 }

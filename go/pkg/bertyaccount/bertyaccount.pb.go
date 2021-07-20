@@ -1185,6 +1185,194 @@ func (m *ImportAccount_Reply) GetAccountMetadata() *AccountMetadata {
 	return nil
 }
 
+type ImportAccountWithProgress struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ImportAccountWithProgress) Reset()         { *m = ImportAccountWithProgress{} }
+func (m *ImportAccountWithProgress) String() string { return proto.CompactTextString(m) }
+func (*ImportAccountWithProgress) ProtoMessage()    {}
+func (*ImportAccountWithProgress) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2e9b7fcde47f62fe, []int{8}
+}
+
+func (m *ImportAccountWithProgress) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+
+func (m *ImportAccountWithProgress) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ImportAccountWithProgress.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+
+func (m *ImportAccountWithProgress) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ImportAccountWithProgress.Merge(m, src)
+}
+
+func (m *ImportAccountWithProgress) XXX_Size() int {
+	return m.Size()
+}
+
+func (m *ImportAccountWithProgress) XXX_DiscardUnknown() {
+	xxx_messageInfo_ImportAccountWithProgress.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ImportAccountWithProgress proto.InternalMessageInfo
+
+type ImportAccountWithProgress_Request struct {
+	AccountID            string   `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	AccountName          string   `protobuf:"bytes,2,opt,name=account_name,json=accountName,proto3" json:"account_name,omitempty"`
+	BackupPath           string   `protobuf:"bytes,3,opt,name=backup_path,json=backupPath,proto3" json:"backup_path,omitempty"`
+	Args                 []string `protobuf:"bytes,4,rep,name=args,proto3" json:"args,omitempty"`
+	LoggerFilters        string   `protobuf:"bytes,5,opt,name=logger_filters,json=loggerFilters,proto3" json:"logger_filters,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ImportAccountWithProgress_Request) Reset()         { *m = ImportAccountWithProgress_Request{} }
+func (m *ImportAccountWithProgress_Request) String() string { return proto.CompactTextString(m) }
+func (*ImportAccountWithProgress_Request) ProtoMessage()    {}
+func (*ImportAccountWithProgress_Request) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2e9b7fcde47f62fe, []int{8, 0}
+}
+
+func (m *ImportAccountWithProgress_Request) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+
+func (m *ImportAccountWithProgress_Request) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ImportAccountWithProgress_Request.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+
+func (m *ImportAccountWithProgress_Request) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ImportAccountWithProgress_Request.Merge(m, src)
+}
+
+func (m *ImportAccountWithProgress_Request) XXX_Size() int {
+	return m.Size()
+}
+
+func (m *ImportAccountWithProgress_Request) XXX_DiscardUnknown() {
+	xxx_messageInfo_ImportAccountWithProgress_Request.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ImportAccountWithProgress_Request proto.InternalMessageInfo
+
+func (m *ImportAccountWithProgress_Request) GetAccountID() string {
+	if m != nil {
+		return m.AccountID
+	}
+	return ""
+}
+
+func (m *ImportAccountWithProgress_Request) GetAccountName() string {
+	if m != nil {
+		return m.AccountName
+	}
+	return ""
+}
+
+func (m *ImportAccountWithProgress_Request) GetBackupPath() string {
+	if m != nil {
+		return m.BackupPath
+	}
+	return ""
+}
+
+func (m *ImportAccountWithProgress_Request) GetArgs() []string {
+	if m != nil {
+		return m.Args
+	}
+	return nil
+}
+
+func (m *ImportAccountWithProgress_Request) GetLoggerFilters() string {
+	if m != nil {
+		return m.LoggerFilters
+	}
+	return ""
+}
+
+type ImportAccountWithProgress_Reply struct {
+	Progress             *protocoltypes.Progress `protobuf:"bytes,1,opt,name=progress,proto3" json:"progress,omitempty"`
+	AccountMetadata      *AccountMetadata        `protobuf:"bytes,2,opt,name=account_metadata,json=accountMetadata,proto3" json:"account_metadata,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
+	XXX_unrecognized     []byte                  `json:"-"`
+	XXX_sizecache        int32                   `json:"-"`
+}
+
+func (m *ImportAccountWithProgress_Reply) Reset()         { *m = ImportAccountWithProgress_Reply{} }
+func (m *ImportAccountWithProgress_Reply) String() string { return proto.CompactTextString(m) }
+func (*ImportAccountWithProgress_Reply) ProtoMessage()    {}
+func (*ImportAccountWithProgress_Reply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2e9b7fcde47f62fe, []int{8, 1}
+}
+
+func (m *ImportAccountWithProgress_Reply) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+
+func (m *ImportAccountWithProgress_Reply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ImportAccountWithProgress_Reply.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+
+func (m *ImportAccountWithProgress_Reply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ImportAccountWithProgress_Reply.Merge(m, src)
+}
+
+func (m *ImportAccountWithProgress_Reply) XXX_Size() int {
+	return m.Size()
+}
+
+func (m *ImportAccountWithProgress_Reply) XXX_DiscardUnknown() {
+	xxx_messageInfo_ImportAccountWithProgress_Reply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ImportAccountWithProgress_Reply proto.InternalMessageInfo
+
+func (m *ImportAccountWithProgress_Reply) GetProgress() *protocoltypes.Progress {
+	if m != nil {
+		return m.Progress
+	}
+	return nil
+}
+
+func (m *ImportAccountWithProgress_Reply) GetAccountMetadata() *AccountMetadata {
+	if m != nil {
+		return m.AccountMetadata
+	}
+	return nil
+}
+
 type CreateAccount struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1195,7 +1383,7 @@ func (m *CreateAccount) Reset()         { *m = CreateAccount{} }
 func (m *CreateAccount) String() string { return proto.CompactTextString(m) }
 func (*CreateAccount) ProtoMessage()    {}
 func (*CreateAccount) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{8}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{9}
 }
 
 func (m *CreateAccount) XXX_Unmarshal(b []byte) error {
@@ -1243,7 +1431,7 @@ func (m *CreateAccount_Request) Reset()         { *m = CreateAccount_Request{} }
 func (m *CreateAccount_Request) String() string { return proto.CompactTextString(m) }
 func (*CreateAccount_Request) ProtoMessage()    {}
 func (*CreateAccount_Request) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{8, 0}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{9, 0}
 }
 
 func (m *CreateAccount_Request) XXX_Unmarshal(b []byte) error {
@@ -1316,7 +1504,7 @@ func (m *CreateAccount_Reply) Reset()         { *m = CreateAccount_Reply{} }
 func (m *CreateAccount_Reply) String() string { return proto.CompactTextString(m) }
 func (*CreateAccount_Reply) ProtoMessage()    {}
 func (*CreateAccount_Reply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{8, 1}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{9, 1}
 }
 
 func (m *CreateAccount_Reply) XXX_Unmarshal(b []byte) error {
@@ -1367,7 +1555,7 @@ func (m *UpdateAccount) Reset()         { *m = UpdateAccount{} }
 func (m *UpdateAccount) String() string { return proto.CompactTextString(m) }
 func (*UpdateAccount) ProtoMessage()    {}
 func (*UpdateAccount) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{9}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{10}
 }
 
 func (m *UpdateAccount) XXX_Unmarshal(b []byte) error {
@@ -1415,7 +1603,7 @@ func (m *UpdateAccount_Request) Reset()         { *m = UpdateAccount_Request{} }
 func (m *UpdateAccount_Request) String() string { return proto.CompactTextString(m) }
 func (*UpdateAccount_Request) ProtoMessage()    {}
 func (*UpdateAccount_Request) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{9, 0}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{10, 0}
 }
 
 func (m *UpdateAccount_Request) XXX_Unmarshal(b []byte) error {
@@ -1488,7 +1676,7 @@ func (m *UpdateAccount_Reply) Reset()         { *m = UpdateAccount_Reply{} }
 func (m *UpdateAccount_Reply) String() string { return proto.CompactTextString(m) }
 func (*UpdateAccount_Reply) ProtoMessage()    {}
 func (*UpdateAccount_Reply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{9, 1}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{10, 1}
 }
 
 func (m *UpdateAccount_Reply) XXX_Unmarshal(b []byte) error {
@@ -1539,7 +1727,7 @@ func (m *GetGRPCListenerAddrs) Reset()         { *m = GetGRPCListenerAddrs{} }
 func (m *GetGRPCListenerAddrs) String() string { return proto.CompactTextString(m) }
 func (*GetGRPCListenerAddrs) ProtoMessage()    {}
 func (*GetGRPCListenerAddrs) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{10}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{11}
 }
 
 func (m *GetGRPCListenerAddrs) XXX_Unmarshal(b []byte) error {
@@ -1583,7 +1771,7 @@ func (m *GetGRPCListenerAddrs_Request) Reset()         { *m = GetGRPCListenerAdd
 func (m *GetGRPCListenerAddrs_Request) String() string { return proto.CompactTextString(m) }
 func (*GetGRPCListenerAddrs_Request) ProtoMessage()    {}
 func (*GetGRPCListenerAddrs_Request) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{10, 0}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{11, 0}
 }
 
 func (m *GetGRPCListenerAddrs_Request) XXX_Unmarshal(b []byte) error {
@@ -1628,7 +1816,7 @@ func (m *GetGRPCListenerAddrs_Reply) Reset()         { *m = GetGRPCListenerAddrs
 func (m *GetGRPCListenerAddrs_Reply) String() string { return proto.CompactTextString(m) }
 func (*GetGRPCListenerAddrs_Reply) ProtoMessage()    {}
 func (*GetGRPCListenerAddrs_Reply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{10, 1}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{11, 1}
 }
 
 func (m *GetGRPCListenerAddrs_Reply) XXX_Unmarshal(b []byte) error {
@@ -1681,7 +1869,7 @@ func (m *GetGRPCListenerAddrs_Reply_Entry) Reset()         { *m = GetGRPCListene
 func (m *GetGRPCListenerAddrs_Reply_Entry) String() string { return proto.CompactTextString(m) }
 func (*GetGRPCListenerAddrs_Reply_Entry) ProtoMessage()    {}
 func (*GetGRPCListenerAddrs_Reply_Entry) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{10, 1, 0}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{11, 1, 0}
 }
 
 func (m *GetGRPCListenerAddrs_Reply_Entry) XXX_Unmarshal(b []byte) error {
@@ -1739,7 +1927,7 @@ func (m *LogfileList) Reset()         { *m = LogfileList{} }
 func (m *LogfileList) String() string { return proto.CompactTextString(m) }
 func (*LogfileList) ProtoMessage()    {}
 func (*LogfileList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{11}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{12}
 }
 
 func (m *LogfileList) XXX_Unmarshal(b []byte) error {
@@ -1783,7 +1971,7 @@ func (m *LogfileList_Request) Reset()         { *m = LogfileList_Request{} }
 func (m *LogfileList_Request) String() string { return proto.CompactTextString(m) }
 func (*LogfileList_Request) ProtoMessage()    {}
 func (*LogfileList_Request) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{11, 0}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{12, 0}
 }
 
 func (m *LogfileList_Request) XXX_Unmarshal(b []byte) error {
@@ -1828,7 +2016,7 @@ func (m *LogfileList_Reply) Reset()         { *m = LogfileList_Reply{} }
 func (m *LogfileList_Reply) String() string { return proto.CompactTextString(m) }
 func (*LogfileList_Reply) ProtoMessage()    {}
 func (*LogfileList_Reply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{11, 1}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{12, 1}
 }
 
 func (m *LogfileList_Reply) XXX_Unmarshal(b []byte) error {
@@ -1887,7 +2075,7 @@ func (m *LogfileList_Reply_Logfile) Reset()         { *m = LogfileList_Reply_Log
 func (m *LogfileList_Reply_Logfile) String() string { return proto.CompactTextString(m) }
 func (*LogfileList_Reply_Logfile) ProtoMessage()    {}
 func (*LogfileList_Reply_Logfile) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2e9b7fcde47f62fe, []int{11, 1, 0}
+	return fileDescriptor_2e9b7fcde47f62fe, []int{12, 1, 0}
 }
 
 func (m *LogfileList_Reply_Logfile) XXX_Unmarshal(b []byte) error {
@@ -1977,6 +2165,146 @@ func (m *LogfileList_Reply_Logfile) GetErrs() string {
 	return ""
 }
 
+type GetUsername struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetUsername) Reset()         { *m = GetUsername{} }
+func (m *GetUsername) String() string { return proto.CompactTextString(m) }
+func (*GetUsername) ProtoMessage()    {}
+func (*GetUsername) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2e9b7fcde47f62fe, []int{13}
+}
+
+func (m *GetUsername) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+
+func (m *GetUsername) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetUsername.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+
+func (m *GetUsername) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetUsername.Merge(m, src)
+}
+
+func (m *GetUsername) XXX_Size() int {
+	return m.Size()
+}
+
+func (m *GetUsername) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetUsername.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetUsername proto.InternalMessageInfo
+
+type GetUsername_Request struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetUsername_Request) Reset()         { *m = GetUsername_Request{} }
+func (m *GetUsername_Request) String() string { return proto.CompactTextString(m) }
+func (*GetUsername_Request) ProtoMessage()    {}
+func (*GetUsername_Request) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2e9b7fcde47f62fe, []int{13, 0}
+}
+
+func (m *GetUsername_Request) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+
+func (m *GetUsername_Request) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetUsername_Request.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+
+func (m *GetUsername_Request) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetUsername_Request.Merge(m, src)
+}
+
+func (m *GetUsername_Request) XXX_Size() int {
+	return m.Size()
+}
+
+func (m *GetUsername_Request) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetUsername_Request.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetUsername_Request proto.InternalMessageInfo
+
+type GetUsername_Reply struct {
+	Username             string   `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetUsername_Reply) Reset()         { *m = GetUsername_Reply{} }
+func (m *GetUsername_Reply) String() string { return proto.CompactTextString(m) }
+func (*GetUsername_Reply) ProtoMessage()    {}
+func (*GetUsername_Reply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2e9b7fcde47f62fe, []int{13, 1}
+}
+
+func (m *GetUsername_Reply) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+
+func (m *GetUsername_Reply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetUsername_Reply.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+
+func (m *GetUsername_Reply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetUsername_Reply.Merge(m, src)
+}
+
+func (m *GetUsername_Reply) XXX_Size() int {
+	return m.Size()
+}
+
+func (m *GetUsername_Reply) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetUsername_Reply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetUsername_Reply proto.InternalMessageInfo
+
+func (m *GetUsername_Reply) GetUsername() string {
+	if m != nil {
+		return m.Username
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*OpenAccount)(nil), "berty.account.v1.OpenAccount")
 	proto.RegisterType((*OpenAccount_Request)(nil), "berty.account.v1.OpenAccount.Request")
@@ -2000,6 +2328,9 @@ func init() {
 	proto.RegisterType((*ImportAccount)(nil), "berty.account.v1.ImportAccount")
 	proto.RegisterType((*ImportAccount_Request)(nil), "berty.account.v1.ImportAccount.Request")
 	proto.RegisterType((*ImportAccount_Reply)(nil), "berty.account.v1.ImportAccount.Reply")
+	proto.RegisterType((*ImportAccountWithProgress)(nil), "berty.account.v1.ImportAccountWithProgress")
+	proto.RegisterType((*ImportAccountWithProgress_Request)(nil), "berty.account.v1.ImportAccountWithProgress.Request")
+	proto.RegisterType((*ImportAccountWithProgress_Reply)(nil), "berty.account.v1.ImportAccountWithProgress.Reply")
 	proto.RegisterType((*CreateAccount)(nil), "berty.account.v1.CreateAccount")
 	proto.RegisterType((*CreateAccount_Request)(nil), "berty.account.v1.CreateAccount.Request")
 	proto.RegisterType((*CreateAccount_Reply)(nil), "berty.account.v1.CreateAccount.Reply")
@@ -2014,74 +2345,83 @@ func init() {
 	proto.RegisterType((*LogfileList_Request)(nil), "berty.account.v1.LogfileList.Request")
 	proto.RegisterType((*LogfileList_Reply)(nil), "berty.account.v1.LogfileList.Reply")
 	proto.RegisterType((*LogfileList_Reply_Logfile)(nil), "berty.account.v1.LogfileList.Reply.Logfile")
+	proto.RegisterType((*GetUsername)(nil), "berty.account.v1.GetUsername")
+	proto.RegisterType((*GetUsername_Request)(nil), "berty.account.v1.GetUsername.Request")
+	proto.RegisterType((*GetUsername_Reply)(nil), "berty.account.v1.GetUsername.Reply")
 }
 
 func init() { proto.RegisterFile("bertyaccount.proto", fileDescriptor_2e9b7fcde47f62fe) }
 
 var fileDescriptor_2e9b7fcde47f62fe = []byte{
-	// 988 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x57, 0x4f, 0x6f, 0x1b, 0x45,
-	0x14, 0xd7, 0xc4, 0x76, 0x1c, 0x3f, 0xc7, 0x6d, 0x35, 0x44, 0xb0, 0x32, 0x22, 0x49, 0xdd, 0x06,
-	0x22, 0x51, 0xad, 0x1b, 0xf7, 0xd0, 0x13, 0x12, 0x6d, 0xd2, 0x56, 0x11, 0x81, 0x86, 0x45, 0x15,
-	0x02, 0x21, 0x59, 0x93, 0xdd, 0xd7, 0xcd, 0x2a, 0x6b, 0xef, 0x32, 0x3b, 0x89, 0x64, 0x2e, 0x48,
-	0x3d, 0xf6, 0xc4, 0x05, 0x89, 0x1b, 0x47, 0x6e, 0x5c, 0x90, 0xf8, 0x0a, 0x70, 0x83, 0x4f, 0x80,
-	0x50, 0x3e, 0x07, 0x42, 0x68, 0xfe, 0xec, 0x7a, 0x77, 0xbd, 0x71, 0x1a, 0x68, 0xe8, 0xc9, 0x33,
-	0xbf, 0xfd, 0xbd, 0x7f, 0xbf, 0xd9, 0xf7, 0x66, 0x0d, 0xf4, 0x00, 0xb9, 0x98, 0x30, 0xd7, 0x8d,
-	0x8e, 0xc7, 0xc2, 0x8e, 0x79, 0x24, 0x22, 0x7a, 0x4d, 0x61, 0x76, 0x0a, 0x9e, 0x6c, 0x75, 0x57,
-	0xfc, 0xc8, 0x8f, 0xd4, 0xc3, 0xbe, 0x5c, 0x69, 0x5e, 0xf7, 0x35, 0xf5, 0xe3, 0x46, 0xa1, 0x98,
-	0xc4, 0x98, 0x18, 0xb0, 0x83, 0x9c, 0xbb, 0x91, 0x87, 0x7a, 0xdb, 0x7b, 0x4e, 0xa0, 0xfd, 0x38,
-	0xc6, 0xf1, 0x3d, 0xed, 0xac, 0xcb, 0xa1, 0xe9, 0xe0, 0x97, 0xc7, 0x98, 0x08, 0x4a, 0xa1, 0xce,
-	0xb8, 0x9f, 0x58, 0x64, 0xbd, 0xb6, 0xd9, 0x72, 0xd4, 0x9a, 0xde, 0x02, 0x30, 0x61, 0x87, 0x81,
-	0x67, 0x2d, 0xac, 0x93, 0xcd, 0xd6, 0xfd, 0xce, 0xe9, 0x1f, 0x6b, 0x2d, 0x63, 0xbf, 0xbb, 0xe3,
-	0xb4, 0x0c, 0x61, 0xd7, 0xa3, 0x1b, 0x70, 0x25, 0x8c, 0x7c, 0x1f, 0xf9, 0xf0, 0x69, 0x10, 0x0a,
-	0xe4, 0x89, 0x55, 0x93, 0x16, 0x4e, 0x47, 0xa3, 0x0f, 0x35, 0xd8, 0x6d, 0x42, 0xc3, 0xc1, 0x38,
-	0x9c, 0xf4, 0x7e, 0x23, 0xf0, 0x46, 0x2e, 0x99, 0x4f, 0x03, 0x71, 0xb8, 0xcf, 0x23, 0x9f, 0x63,
-	0x92, 0xbc, 0x92, 0xc4, 0xde, 0x37, 0x89, 0xd1, 0xbb, 0xb0, 0x14, 0x9b, 0x44, 0x2c, 0xb2, 0x4e,
-	0x36, 0xdb, 0x83, 0x37, 0x6d, 0x7d, 0x08, 0xa9, 0xc4, 0xf6, 0xc9, 0x96, 0x9d, 0xe6, 0xea, 0x64,
-	0xe4, 0x5e, 0x0f, 0x96, 0xb7, 0xc3, 0x28, 0xc1, 0x54, 0xde, 0x56, 0x56, 0xc5, 0xb4, 0x6a, 0x1f,
-	0xac, 0x3c, 0xa7, 0x50, 0x75, 0x8e, 0xff, 0xdf, 0x93, 0xf9, 0x8b, 0xc0, 0x55, 0x13, 0xe4, 0x43,
-	0x14, 0xcc, 0x63, 0x82, 0x95, 0x74, 0x23, 0xe7, 0xe8, 0x46, 0xa1, 0x3e, 0x66, 0x23, 0xd4, 0xfa,
-	0x3a, 0x6a, 0xad, 0x3c, 0x9c, 0x30, 0xc1, 0xf8, 0xd0, 0x0d, 0x3c, 0xad, 0xa3, 0xf1, 0xa0, 0xd0,
-	0x6d, 0xe5, 0x41, 0x2f, 0x03, 0x8f, 0xbe, 0x05, 0x10, 0x1f, 0x1f, 0x84, 0x81, 0x3b, 0x3c, 0xc2,
-	0x89, 0x55, 0x57, 0x7e, 0x5a, 0x1a, 0xf9, 0x00, 0x27, 0x74, 0x0d, 0xda, 0x21, 0x4b, 0xc4, 0x30,
-	0x8a, 0x71, 0x8c, 0x9e, 0xd5, 0x58, 0x27, 0x9b, 0x35, 0x07, 0x24, 0xf4, 0x58, 0x21, 0xf4, 0x06,
-	0x74, 0x5c, 0x8e, 0x4c, 0x04, 0xd1, 0x78, 0xe8, 0x31, 0x81, 0xd6, 0xa2, 0xa2, 0x2c, 0xa7, 0xe0,
-	0x0e, 0x13, 0x48, 0x57, 0xa0, 0x81, 0x9c, 0x47, 0xdc, 0x6a, 0x2a, 0xff, 0x7a, 0xd3, 0x63, 0xb0,
-	0xbc, 0x17, 0x24, 0xc2, 0x14, 0x56, 0xd0, 0xf6, 0x61, 0xaa, 0xed, 0x7b, 0xb0, 0x64, 0xaa, 0xd5,
-	0xaf, 0x57, 0x7b, 0x70, 0xdd, 0x2e, 0x77, 0x9b, 0x5d, 0xd2, 0xd0, 0xc9, 0x4c, 0x7a, 0x1f, 0x43,
-	0x67, 0x07, 0x43, 0x14, 0xd9, 0x79, 0xdf, 0x9d, 0xbe, 0xb5, 0x17, 0x52, 0x7a, 0xfa, 0x76, 0x7c,
-	0xbf, 0x00, 0x9d, 0xdd, 0x51, 0x1c, 0xf1, 0x34, 0xf1, 0xee, 0xcf, 0xe4, 0x5f, 0x3a, 0xa5, 0xd7,
-	0x61, 0x39, 0x65, 0xe7, 0x8e, 0xb1, 0x6d, 0xb0, 0x8f, 0xe4, 0x69, 0xae, 0x41, 0xfb, 0x80, 0xb9,
-	0x47, 0xc7, 0xf1, 0x30, 0x66, 0xe2, 0xd0, 0xb4, 0x05, 0x68, 0x68, 0x9f, 0x89, 0xc3, 0xac, 0xf9,
-	0xea, 0xb9, 0xe6, 0x9b, 0x6d, 0xa7, 0x46, 0x55, 0x3b, 0x3d, 0x49, 0x55, 0xde, 0x83, 0x6b, 0x69,
-	0x1e, 0x23, 0x23, 0xa2, 0x79, 0x93, 0x5f, 0x40, 0xed, 0xab, 0xac, 0x08, 0xf4, 0xfe, 0x26, 0xd0,
-	0xd9, 0x96, 0xc7, 0x9f, 0xa9, 0xfe, 0xed, 0x65, 0x2a, 0x94, 0x0a, 0x50, 0x9b, 0x2b, 0x40, 0xfd,
-	0x7f, 0x14, 0xe0, 0x9b, 0x05, 0xe8, 0x3c, 0x89, 0xbd, 0x9c, 0x00, 0x3f, 0x5c, 0xa6, 0x00, 0x2f,
-	0xb3, 0xe1, 0x2f, 0x4b, 0x92, 0x1f, 0x09, 0xac, 0x3c, 0x42, 0xf1, 0xc8, 0xd9, 0xdf, 0x96, 0x3d,
-	0x8f, 0x63, 0xe4, 0xf7, 0x3c, 0x8f, 0x17, 0x9a, 0xfe, 0x39, 0x99, 0xc6, 0x6e, 0xe2, 0x58, 0xf0,
-	0x00, 0xd3, 0xa6, 0x1f, 0xcc, 0x86, 0xac, 0xf2, 0x66, 0x2b, 0x73, 0xfb, 0xc1, 0x58, 0xf0, 0x89,
-	0x93, 0xba, 0xe8, 0xde, 0x81, 0x86, 0x42, 0xe4, 0x18, 0x52, 0x13, 0x59, 0x8b, 0xee, 0xe8, 0x8d,
-	0x44, 0x47, 0xcc, 0xf3, 0xb8, 0x91, 0x56, 0x6f, 0x7a, 0x3f, 0x2d, 0x40, 0x7b, 0x2f, 0xf2, 0x9f,
-	0x06, 0x21, 0xca, 0x10, 0xf9, 0x3c, 0xbf, 0x5b, 0x48, 0xf3, 0x7c, 0x50, 0xce, 0xf3, 0xdd, 0xd9,
-	0x3c, 0x73, 0x4e, 0x4c, 0x7a, 0x06, 0x99, 0x26, 0xf8, 0x0b, 0x81, 0xa6, 0x01, 0x5f, 0xc2, 0xfc,
-	0xa7, 0x50, 0xcf, 0x8d, 0x0a, 0xb5, 0x96, 0x58, 0x12, 0x7c, 0x85, 0xea, 0xb8, 0x6b, 0x8e, 0x5a,
-	0x4b, 0xec, 0x28, 0x18, 0x7b, 0x66, 0x34, 0xa8, 0xb5, 0xc4, 0x44, 0x30, 0x4a, 0x87, 0xb8, 0x5a,
-	0xd3, 0xd7, 0x61, 0x31, 0x64, 0x02, 0x13, 0xa1, 0xa6, 0xf7, 0x92, 0x63, 0x76, 0x92, 0x8b, 0x9c,
-	0x27, 0xd6, 0x92, 0xb6, 0x97, 0xeb, 0xc1, 0xb3, 0x16, 0x5c, 0x31, 0x89, 0x7e, 0x82, 0xfc, 0x24,
-	0x70, 0x91, 0x7e, 0x56, 0xf8, 0x9e, 0xa1, 0x1b, 0xb3, 0x0a, 0xe5, 0x1e, 0xdb, 0xa9, 0xc6, 0x37,
-	0xce, 0xa3, 0x49, 0xf9, 0xbf, 0x3e, 0xf3, 0xeb, 0x84, 0x6e, 0xcd, 0xb5, 0xcf, 0x53, 0xb3, 0x90,
-	0xfd, 0x8b, 0x98, 0xc4, 0xe1, 0xe4, 0x36, 0xa1, 0x5f, 0x14, 0xbf, 0x26, 0xe8, 0xdb, 0xb3, 0x2e,
-	0xf2, 0xcf, 0xb3, 0x50, 0x37, 0xcf, 0xe5, 0xc9, 0xf2, 0x9e, 0x91, 0xb3, 0x3f, 0x44, 0xe8, 0x60,
-	0xbe, 0x8b, 0xca, 0x0a, 0x6f, 0x5f, 0xc8, 0x26, 0x2b, 0x31, 0x7f, 0x49, 0x57, 0x95, 0x98, 0x7f,
-	0x3e, 0xaf, 0xc4, 0x12, 0x4f, 0x96, 0x38, 0x2c, 0xdd, 0xcf, 0xf4, 0x9d, 0x59, 0xb3, 0x02, 0x21,
-	0xf3, 0xbf, 0x71, 0x3e, 0xd1, 0x04, 0x28, 0x5c, 0xd6, 0x55, 0x01, 0x0a, 0x84, 0x79, 0x01, 0xca,
-	0x44, 0x13, 0xa0, 0x70, 0xd7, 0x55, 0x05, 0x28, 0x10, 0xe6, 0x05, 0x28, 0x13, 0x4d, 0x80, 0xc2,
-	0x5d, 0x52, 0x15, 0xa0, 0x40, 0x98, 0x17, 0xa0, 0x4c, 0x94, 0x01, 0x44, 0xf5, 0x64, 0xa6, 0xf6,
-	0x0b, 0xcf, 0x5c, 0x1d, 0xee, 0xd6, 0x45, 0x66, 0xb4, 0x1c, 0x0b, 0xb9, 0xc9, 0x58, 0x35, 0x16,
-	0x8a, 0x83, 0xf3, 0xcc, 0xb1, 0x30, 0x33, 0x5f, 0xef, 0x0f, 0x7e, 0x3d, 0x5d, 0x25, 0xbf, 0x9f,
-	0xae, 0x92, 0x3f, 0x4f, 0x57, 0xc9, 0xe7, 0x37, 0xb5, 0x85, 0x40, 0xf7, 0xb0, 0xaf, 0x96, 0x7d,
-	0x3f, 0xea, 0xc7, 0x47, 0x7e, 0x3f, 0xff, 0x47, 0xee, 0x60, 0x51, 0xdd, 0x05, 0x77, 0xfe, 0x09,
-	0x00, 0x00, 0xff, 0xff, 0x5b, 0xaf, 0x05, 0x07, 0xdf, 0x0d, 0x00, 0x00,
+	// 1074 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x58, 0x4d, 0x6f, 0x1b, 0xc5,
+	0x1b, 0xd7, 0xf8, 0x25, 0xb6, 0x1f, 0xc7, 0x6d, 0x35, 0xff, 0xe8, 0xcf, 0x62, 0x44, 0x92, 0xba,
+	0x0d, 0x44, 0xa2, 0x5a, 0x37, 0xce, 0xa1, 0xa7, 0x4a, 0xb4, 0x49, 0x1b, 0x45, 0x04, 0x1a, 0x16,
+	0x45, 0x08, 0x84, 0x64, 0x6d, 0x76, 0xa7, 0x9b, 0x55, 0xd6, 0xde, 0x65, 0x76, 0x1c, 0xc9, 0x5c,
+	0x90, 0x90, 0xb8, 0xf4, 0x80, 0xb8, 0x20, 0x71, 0xe3, 0xc8, 0x8d, 0x0b, 0x12, 0x5f, 0x01, 0x6e,
+	0xf0, 0x09, 0x10, 0x8a, 0xd4, 0x6f, 0x81, 0x10, 0x9a, 0x97, 0x5d, 0xcf, 0xae, 0x37, 0x76, 0xdd,
+	0x36, 0x20, 0x4e, 0x9e, 0xfd, 0xcd, 0xef, 0x79, 0xfb, 0xcd, 0xcc, 0x33, 0x23, 0x03, 0x3e, 0x26,
+	0x94, 0x8d, 0x6d, 0xc7, 0x09, 0x47, 0x43, 0x66, 0x46, 0x34, 0x64, 0x21, 0xbe, 0x26, 0x30, 0x33,
+	0x01, 0xcf, 0xb6, 0xda, 0x2b, 0x5e, 0xe8, 0x85, 0x62, 0xb2, 0xcb, 0x47, 0x92, 0xd7, 0xfe, 0x9f,
+	0xf8, 0x71, 0xc2, 0x80, 0x8d, 0x23, 0x12, 0x2b, 0xb0, 0x45, 0x28, 0x75, 0x42, 0x97, 0xc8, 0xcf,
+	0xce, 0x13, 0x04, 0xcd, 0x47, 0x11, 0x19, 0xde, 0x93, 0xce, 0xda, 0x14, 0x6a, 0x16, 0xf9, 0x74,
+	0x44, 0x62, 0x86, 0x31, 0x54, 0x6c, 0xea, 0xc5, 0x06, 0x5a, 0x2f, 0x6f, 0x36, 0x2c, 0x31, 0xc6,
+	0xb7, 0x00, 0x54, 0xd8, 0xbe, 0xef, 0x1a, 0xa5, 0x75, 0xb4, 0xd9, 0xb8, 0xdf, 0x3a, 0xff, 0x7d,
+	0xad, 0xa1, 0xec, 0xf7, 0x77, 0xad, 0x86, 0x22, 0xec, 0xbb, 0x78, 0x03, 0xae, 0x04, 0xa1, 0xe7,
+	0x11, 0xda, 0x7f, 0xec, 0x07, 0x8c, 0xd0, 0xd8, 0x28, 0x73, 0x0b, 0xab, 0x25, 0xd1, 0x87, 0x12,
+	0x6c, 0xd7, 0xa0, 0x6a, 0x91, 0x28, 0x18, 0x77, 0x7e, 0x45, 0xf0, 0x8a, 0x96, 0xcc, 0x87, 0x3e,
+	0x3b, 0x39, 0xa4, 0xa1, 0x47, 0x49, 0x1c, 0xff, 0x2b, 0x89, 0xbd, 0xad, 0x12, 0xc3, 0x77, 0xa0,
+	0x1e, 0xa9, 0x44, 0x0c, 0xb4, 0x8e, 0x36, 0x9b, 0xbd, 0xd7, 0x4c, 0xb9, 0x08, 0x89, 0xc4, 0xe6,
+	0xd9, 0x96, 0x99, 0xe4, 0x6a, 0xa5, 0xe4, 0x4e, 0x07, 0x96, 0x77, 0x82, 0x30, 0x26, 0x89, 0xbc,
+	0x8d, 0xb4, 0x8a, 0x49, 0xd5, 0x1e, 0x18, 0x3a, 0x27, 0x53, 0xb5, 0xc6, 0x7f, 0xf1, 0x64, 0xfe,
+	0x44, 0x70, 0x55, 0x05, 0x79, 0x97, 0x30, 0xdb, 0xb5, 0x99, 0x9d, 0xd3, 0x0d, 0xcd, 0xd1, 0x0d,
+	0x43, 0x65, 0x68, 0x0f, 0x88, 0xd4, 0xd7, 0x12, 0x63, 0xe1, 0xe1, 0xcc, 0x66, 0x36, 0xed, 0x3b,
+	0xbe, 0x2b, 0x75, 0x54, 0x1e, 0x04, 0xba, 0x23, 0x3c, 0xc8, 0xa1, 0xef, 0xe2, 0xd7, 0x01, 0xa2,
+	0xd1, 0x71, 0xe0, 0x3b, 0xfd, 0x53, 0x32, 0x36, 0x2a, 0xc2, 0x4f, 0x43, 0x22, 0xef, 0x90, 0x31,
+	0x5e, 0x83, 0x66, 0x60, 0xc7, 0xac, 0x1f, 0x46, 0x64, 0x48, 0x5c, 0xa3, 0xba, 0x8e, 0x36, 0xcb,
+	0x16, 0x70, 0xe8, 0x91, 0x40, 0xf0, 0x0d, 0x68, 0x39, 0x94, 0xd8, 0xcc, 0x0f, 0x87, 0x7d, 0xd7,
+	0x66, 0xc4, 0x58, 0x12, 0x94, 0xe5, 0x04, 0xdc, 0xb5, 0x19, 0xc1, 0x2b, 0x50, 0x25, 0x94, 0x86,
+	0xd4, 0xa8, 0x09, 0xff, 0xf2, 0xa3, 0x63, 0xc3, 0xf2, 0x81, 0x1f, 0x33, 0x55, 0x58, 0x46, 0xdb,
+	0x87, 0x89, 0xb6, 0x77, 0xa1, 0xae, 0xaa, 0x95, 0xdb, 0xab, 0xd9, 0xbb, 0x6e, 0xe6, 0x4f, 0x9b,
+	0x99, 0xd3, 0xd0, 0x4a, 0x4d, 0x3a, 0xef, 0x43, 0x6b, 0x97, 0x04, 0x84, 0xa5, 0xeb, 0x7d, 0x67,
+	0xb2, 0x6b, 0x17, 0x52, 0x7a, 0xb2, 0x3b, 0xbe, 0x2b, 0x41, 0x6b, 0x7f, 0x10, 0x85, 0x34, 0x49,
+	0xbc, 0xfd, 0x13, 0x7a, 0x4e, 0xa7, 0xf8, 0x3a, 0x2c, 0x27, 0x6c, 0x6d, 0x19, 0x9b, 0x0a, 0x7b,
+	0x8f, 0xaf, 0xe6, 0x1a, 0x34, 0x8f, 0x6d, 0xe7, 0x74, 0x14, 0xf5, 0x23, 0x9b, 0x9d, 0xa8, 0x63,
+	0x01, 0x12, 0x3a, 0xb4, 0xd9, 0x49, 0x7a, 0xf8, 0x2a, 0xda, 0xe1, 0x9b, 0x3e, 0x4e, 0xd5, 0xa2,
+	0xe3, 0x74, 0x94, 0xa8, 0x7c, 0x00, 0xd7, 0x92, 0x3c, 0x06, 0x4a, 0x44, 0xb5, 0x93, 0x9f, 0x41,
+	0xed, 0xab, 0x76, 0x16, 0xe8, 0x3c, 0x2d, 0xc1, 0xab, 0x19, 0x85, 0x32, 0x27, 0xe8, 0x3f, 0xab,
+	0xd6, 0x57, 0xe8, 0x45, 0x0f, 0x7c, 0xa1, 0xce, 0xa5, 0xe7, 0xd6, 0xf9, 0x2f, 0x04, 0xad, 0x1d,
+	0x7e, 0xcc, 0xd2, 0xdd, 0xfd, 0xcd, 0x65, 0x6a, 0x9b, 0x48, 0x57, 0x9e, 0x29, 0x5d, 0xe5, 0x1f,
+	0xdc, 0x68, 0x5f, 0x97, 0xa0, 0x75, 0x14, 0xb9, 0x9a, 0x00, 0xdf, 0x5f, 0xa6, 0x00, 0x2f, 0xb3,
+	0xb1, 0x5e, 0x96, 0x24, 0x3f, 0x20, 0x58, 0xd9, 0x23, 0x6c, 0xcf, 0x3a, 0xdc, 0xe1, 0xbd, 0x95,
+	0x0c, 0x09, 0xbd, 0xe7, 0xba, 0x34, 0xd3, 0x5c, 0x9f, 0xa0, 0x49, 0xec, 0x1a, 0x19, 0x32, 0xea,
+	0x93, 0xa4, 0xb9, 0xf6, 0xa6, 0x43, 0x16, 0x79, 0x33, 0x85, 0xb9, 0xf9, 0x60, 0xc8, 0xe8, 0xd8,
+	0x4a, 0x5c, 0xb4, 0xb7, 0xa1, 0x2a, 0x10, 0xde, 0xee, 0xc5, 0x41, 0x90, 0xa2, 0x5b, 0xf2, 0x83,
+	0xa3, 0x03, 0xdb, 0x75, 0xa9, 0x92, 0x56, 0x7e, 0x74, 0x7e, 0x2c, 0x41, 0xf3, 0x20, 0xf4, 0x1e,
+	0xfb, 0x01, 0xe1, 0x21, 0xf4, 0x3c, 0xbf, 0x2d, 0x25, 0x79, 0x3e, 0xc8, 0xe7, 0xf9, 0xd6, 0x74,
+	0x9e, 0x9a, 0x13, 0x95, 0x9e, 0x42, 0x26, 0x09, 0xfe, 0x8c, 0xa0, 0xa6, 0xc0, 0x97, 0x70, 0xcf,
+	0x62, 0xa8, 0x68, 0x4d, 0x46, 0x8c, 0x39, 0x16, 0xfb, 0x9f, 0x11, 0xb1, 0xdc, 0x65, 0x4b, 0x8c,
+	0x39, 0x76, 0xea, 0x0f, 0x5d, 0xd5, 0x54, 0xc4, 0x98, 0x63, 0xcc, 0x1f, 0x24, 0x97, 0xa5, 0x18,
+	0xe3, 0xff, 0xc3, 0x52, 0x60, 0x33, 0x12, 0x33, 0x71, 0x4b, 0xd6, 0x2d, 0xf5, 0xc5, 0xb9, 0x84,
+	0xd2, 0xd8, 0xa8, 0x4b, 0x7b, 0x3e, 0xee, 0xdc, 0x85, 0xe6, 0x1e, 0x61, 0x47, 0x31, 0xa1, 0x3c,
+	0x15, 0x5d, 0xb4, 0x1b, 0x89, 0x66, 0x6d, 0xa8, 0x8f, 0xd4, 0xbc, 0x5a, 0x87, 0xf4, 0xbb, 0xf7,
+	0x14, 0xe0, 0x8a, 0xaa, 0xf3, 0x03, 0x42, 0xcf, 0x7c, 0x87, 0xe0, 0x8f, 0x32, 0xcf, 0x4e, 0xbc,
+	0x31, 0x2d, 0xb0, 0x36, 0x6d, 0xa6, 0xd1, 0xe6, 0xd1, 0x78, 0x26, 0x9f, 0x5f, 0xf8, 0x88, 0xc4,
+	0x5b, 0x33, 0xed, 0x75, 0x6a, 0x1a, 0xb2, 0xbb, 0x88, 0x49, 0x14, 0x8c, 0x6f, 0x23, 0xfc, 0x49,
+	0xf6, 0xd1, 0x87, 0xdf, 0x98, 0x76, 0xa1, 0xcf, 0xa7, 0xa1, 0x6e, 0xce, 0xe5, 0xf1, 0xf2, 0xbe,
+	0x40, 0x17, 0xbf, 0x17, 0x71, 0x6f, 0xb6, 0x8b, 0xc2, 0x0a, 0x6f, 0x2f, 0x64, 0x93, 0x96, 0xa8,
+	0xbf, 0xa5, 0x8a, 0x4a, 0xd4, 0xe7, 0x67, 0x95, 0x98, 0xe3, 0xf1, 0x12, 0xfb, 0xb9, 0x67, 0x14,
+	0x7e, 0x73, 0xda, 0x2c, 0x43, 0x48, 0xfd, 0x6f, 0xcc, 0x27, 0xaa, 0x00, 0x99, 0x17, 0x43, 0x51,
+	0x80, 0x0c, 0x61, 0x56, 0x80, 0x3c, 0x91, 0x07, 0xf8, 0x12, 0xcd, 0x78, 0x93, 0xe0, 0xed, 0x39,
+	0x4e, 0x0a, 0x97, 0x69, 0x6b, 0x31, 0x23, 0xb9, 0x4e, 0xfd, 0xdc, 0x95, 0x5d, 0x54, 0x68, 0x86,
+	0x30, 0xab, 0xd0, 0x3c, 0x51, 0x29, 0x99, 0xb9, 0x12, 0x8b, 0x02, 0x64, 0x08, 0xb3, 0x02, 0xe4,
+	0x89, 0x3c, 0x00, 0x2b, 0xbe, 0x60, 0xb0, 0xf9, 0xcc, 0x57, 0x87, 0x0c, 0x77, 0x6b, 0x91, 0xab,
+	0x86, 0xb7, 0x27, 0xad, 0xc1, 0x17, 0xb5, 0xa7, 0x6c, 0xff, 0xbf, 0xb0, 0x3d, 0x4d, 0x5d, 0x13,
+	0xdc, 0xb5, 0xd6, 0x4b, 0x8b, 0x5c, 0x6b, 0xd3, 0xb3, 0x5c, 0x67, 0x69, 0x51, 0x30, 0xbe, 0xdf,
+	0xfb, 0xe5, 0x7c, 0x15, 0xfd, 0x76, 0xbe, 0x8a, 0xfe, 0x38, 0x5f, 0x45, 0x1f, 0xdf, 0x94, 0x16,
+	0x8c, 0x38, 0x27, 0x5d, 0x31, 0xec, 0x7a, 0x61, 0x37, 0x3a, 0xf5, 0xba, 0xfa, 0x5f, 0x0a, 0xc7,
+	0x4b, 0xe2, 0xb6, 0xdc, 0xfe, 0x3b, 0x00, 0x00, 0xff, 0xff, 0x11, 0x7b, 0x5e, 0x1d, 0x69, 0x10,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -2112,6 +2452,8 @@ type AccountServiceClient interface {
 	DeleteAccount(ctx context.Context, in *DeleteAccount_Request, opts ...grpc.CallOption) (*DeleteAccount_Reply, error)
 	// ImportAccount imports existing data.
 	ImportAccount(ctx context.Context, in *ImportAccount_Request, opts ...grpc.CallOption) (*ImportAccount_Reply, error)
+	// ImportAccount imports existing data.
+	ImportAccountWithProgress(ctx context.Context, in *ImportAccountWithProgress_Request, opts ...grpc.CallOption) (AccountService_ImportAccountWithProgressClient, error)
 	// CreateAccount creates a new account.
 	CreateAccount(ctx context.Context, in *CreateAccount_Request, opts ...grpc.CallOption) (*CreateAccount_Reply, error)
 	// UpdateAccount update account's metadata.
@@ -2120,6 +2462,8 @@ type AccountServiceClient interface {
 	GetGRPCListenerAddrs(ctx context.Context, in *GetGRPCListenerAddrs_Request, opts ...grpc.CallOption) (*GetGRPCListenerAddrs_Reply, error)
 	// LogfileList returns a list of logfiles that can be used with Tyber.
 	LogfileList(ctx context.Context, in *LogfileList_Request, opts ...grpc.CallOption) (*LogfileList_Reply, error)
+	// GetUsername returns the name of the device/user using Android/iOS/universal API
+	GetUsername(ctx context.Context, in *GetUsername_Request, opts ...grpc.CallOption) (*GetUsername_Reply, error)
 }
 
 type accountServiceClient struct {
@@ -2239,6 +2583,38 @@ func (c *accountServiceClient) ImportAccount(ctx context.Context, in *ImportAcco
 	return out, nil
 }
 
+func (c *accountServiceClient) ImportAccountWithProgress(ctx context.Context, in *ImportAccountWithProgress_Request, opts ...grpc.CallOption) (AccountService_ImportAccountWithProgressClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_AccountService_serviceDesc.Streams[2], "/berty.account.v1.AccountService/ImportAccountWithProgress", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &accountServiceImportAccountWithProgressClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type AccountService_ImportAccountWithProgressClient interface {
+	Recv() (*ImportAccountWithProgress_Reply, error)
+	grpc.ClientStream
+}
+
+type accountServiceImportAccountWithProgressClient struct {
+	grpc.ClientStream
+}
+
+func (x *accountServiceImportAccountWithProgressClient) Recv() (*ImportAccountWithProgress_Reply, error) {
+	m := new(ImportAccountWithProgress_Reply)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *accountServiceClient) CreateAccount(ctx context.Context, in *CreateAccount_Request, opts ...grpc.CallOption) (*CreateAccount_Reply, error) {
 	out := new(CreateAccount_Reply)
 	err := c.cc.Invoke(ctx, "/berty.account.v1.AccountService/CreateAccount", in, out, opts...)
@@ -2275,6 +2651,15 @@ func (c *accountServiceClient) LogfileList(ctx context.Context, in *LogfileList_
 	return out, nil
 }
 
+func (c *accountServiceClient) GetUsername(ctx context.Context, in *GetUsername_Request, opts ...grpc.CallOption) (*GetUsername_Reply, error) {
+	out := new(GetUsername_Reply)
+	err := c.cc.Invoke(ctx, "/berty.account.v1.AccountService/GetUsername", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountServiceServer is the server API for AccountService service.
 type AccountServiceServer interface {
 	// OpenAccount starts a Berty node.
@@ -2291,6 +2676,8 @@ type AccountServiceServer interface {
 	DeleteAccount(context.Context, *DeleteAccount_Request) (*DeleteAccount_Reply, error)
 	// ImportAccount imports existing data.
 	ImportAccount(context.Context, *ImportAccount_Request) (*ImportAccount_Reply, error)
+	// ImportAccount imports existing data.
+	ImportAccountWithProgress(*ImportAccountWithProgress_Request, AccountService_ImportAccountWithProgressServer) error
 	// CreateAccount creates a new account.
 	CreateAccount(context.Context, *CreateAccount_Request) (*CreateAccount_Reply, error)
 	// UpdateAccount update account's metadata.
@@ -2299,6 +2686,8 @@ type AccountServiceServer interface {
 	GetGRPCListenerAddrs(context.Context, *GetGRPCListenerAddrs_Request) (*GetGRPCListenerAddrs_Reply, error)
 	// LogfileList returns a list of logfiles that can be used with Tyber.
 	LogfileList(context.Context, *LogfileList_Request) (*LogfileList_Reply, error)
+	// GetUsername returns the name of the device/user using Android/iOS/universal API
+	GetUsername(context.Context, *GetUsername_Request) (*GetUsername_Reply, error)
 }
 
 // UnimplementedAccountServiceServer can be embedded to have forward compatible implementations.
@@ -2332,6 +2721,10 @@ func (*UnimplementedAccountServiceServer) ImportAccount(ctx context.Context, req
 	return nil, status.Errorf(codes.Unimplemented, "method ImportAccount not implemented")
 }
 
+func (*UnimplementedAccountServiceServer) ImportAccountWithProgress(req *ImportAccountWithProgress_Request, srv AccountService_ImportAccountWithProgressServer) error {
+	return status.Errorf(codes.Unimplemented, "method ImportAccountWithProgress not implemented")
+}
+
 func (*UnimplementedAccountServiceServer) CreateAccount(ctx context.Context, req *CreateAccount_Request) (*CreateAccount_Reply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAccount not implemented")
 }
@@ -2346,6 +2739,10 @@ func (*UnimplementedAccountServiceServer) GetGRPCListenerAddrs(ctx context.Conte
 
 func (*UnimplementedAccountServiceServer) LogfileList(ctx context.Context, req *LogfileList_Request) (*LogfileList_Reply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogfileList not implemented")
+}
+
+func (*UnimplementedAccountServiceServer) GetUsername(ctx context.Context, req *GetUsername_Request) (*GetUsername_Reply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUsername not implemented")
 }
 
 func RegisterAccountServiceServer(s *grpc.Server, srv AccountServiceServer) {
@@ -2484,6 +2881,27 @@ func _AccountService_ImportAccount_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountService_ImportAccountWithProgress_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ImportAccountWithProgress_Request)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(AccountServiceServer).ImportAccountWithProgress(m, &accountServiceImportAccountWithProgressServer{stream})
+}
+
+type AccountService_ImportAccountWithProgressServer interface {
+	Send(*ImportAccountWithProgress_Reply) error
+	grpc.ServerStream
+}
+
+type accountServiceImportAccountWithProgressServer struct {
+	grpc.ServerStream
+}
+
+func (x *accountServiceImportAccountWithProgressServer) Send(m *ImportAccountWithProgress_Reply) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 func _AccountService_CreateAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateAccount_Request)
 	if err := dec(in); err != nil {
@@ -2556,6 +2974,24 @@ func _AccountService_LogfileList_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountService_GetUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUsername_Request)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServiceServer).GetUsername(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/berty.account.v1.AccountService/GetUsername",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServiceServer).GetUsername(ctx, req.(*GetUsername_Request))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _AccountService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "berty.account.v1.AccountService",
 	HandlerType: (*AccountServiceServer)(nil),
@@ -2596,6 +3032,10 @@ var _AccountService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "LogfileList",
 			Handler:    _AccountService_LogfileList_Handler,
 		},
+		{
+			MethodName: "GetUsername",
+			Handler:    _AccountService_GetUsername_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -2606,6 +3046,11 @@ var _AccountService_serviceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "CloseAccountWithProgress",
 			Handler:       _AccountService_CloseAccountWithProgress_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "ImportAccountWithProgress",
+			Handler:       _AccountService_ImportAccountWithProgress_Handler,
 			ServerStreams: true,
 		},
 	},
@@ -3391,6 +3836,148 @@ func (m *ImportAccount_Reply) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *ImportAccountWithProgress) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ImportAccountWithProgress) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ImportAccountWithProgress) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *ImportAccountWithProgress_Request) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ImportAccountWithProgress_Request) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ImportAccountWithProgress_Request) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.LoggerFilters) > 0 {
+		i -= len(m.LoggerFilters)
+		copy(dAtA[i:], m.LoggerFilters)
+		i = encodeVarintBertyaccount(dAtA, i, uint64(len(m.LoggerFilters)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Args) > 0 {
+		for iNdEx := len(m.Args) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.Args[iNdEx])
+			copy(dAtA[i:], m.Args[iNdEx])
+			i = encodeVarintBertyaccount(dAtA, i, uint64(len(m.Args[iNdEx])))
+			i--
+			dAtA[i] = 0x22
+		}
+	}
+	if len(m.BackupPath) > 0 {
+		i -= len(m.BackupPath)
+		copy(dAtA[i:], m.BackupPath)
+		i = encodeVarintBertyaccount(dAtA, i, uint64(len(m.BackupPath)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.AccountName) > 0 {
+		i -= len(m.AccountName)
+		copy(dAtA[i:], m.AccountName)
+		i = encodeVarintBertyaccount(dAtA, i, uint64(len(m.AccountName)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.AccountID) > 0 {
+		i -= len(m.AccountID)
+		copy(dAtA[i:], m.AccountID)
+		i = encodeVarintBertyaccount(dAtA, i, uint64(len(m.AccountID)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *ImportAccountWithProgress_Reply) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ImportAccountWithProgress_Reply) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ImportAccountWithProgress_Reply) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.AccountMetadata != nil {
+		{
+			size, err := m.AccountMetadata.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintBertyaccount(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Progress != nil {
+		{
+			size, err := m.Progress.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintBertyaccount(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
 func (m *CreateAccount) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -3948,6 +4535,94 @@ func (m *LogfileList_Reply_Logfile) MarshalToSizedBuffer(dAtA []byte) (int, erro
 	return len(dAtA) - i, nil
 }
 
+func (m *GetUsername) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetUsername) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetUsername) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetUsername_Request) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetUsername_Request) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetUsername_Request) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetUsername_Reply) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetUsername_Reply) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetUsername_Reply) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Username) > 0 {
+		i -= len(m.Username)
+		copy(dAtA[i:], m.Username)
+		i = encodeVarintBertyaccount(dAtA, i, uint64(len(m.Username)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintBertyaccount(dAtA []byte, offset int, v uint64) int {
 	offset -= sovBertyaccount(v)
 	base := offset
@@ -4322,6 +4997,72 @@ func (m *ImportAccount_Reply) Size() (n int) {
 	return n
 }
 
+func (m *ImportAccountWithProgress) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *ImportAccountWithProgress_Request) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.AccountID)
+	if l > 0 {
+		n += 1 + l + sovBertyaccount(uint64(l))
+	}
+	l = len(m.AccountName)
+	if l > 0 {
+		n += 1 + l + sovBertyaccount(uint64(l))
+	}
+	l = len(m.BackupPath)
+	if l > 0 {
+		n += 1 + l + sovBertyaccount(uint64(l))
+	}
+	if len(m.Args) > 0 {
+		for _, s := range m.Args {
+			l = len(s)
+			n += 1 + l + sovBertyaccount(uint64(l))
+		}
+	}
+	l = len(m.LoggerFilters)
+	if l > 0 {
+		n += 1 + l + sovBertyaccount(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *ImportAccountWithProgress_Reply) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Progress != nil {
+		l = m.Progress.Size()
+		n += 1 + l + sovBertyaccount(uint64(l))
+	}
+	if m.AccountMetadata != nil {
+		l = m.AccountMetadata.Size()
+		n += 1 + l + sovBertyaccount(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
 func (m *CreateAccount) Size() (n int) {
 	if m == nil {
 		return 0
@@ -4572,6 +5313,46 @@ func (m *LogfileList_Reply_Logfile) Size() (n int) {
 		n += 2
 	}
 	l = len(m.Errs)
+	if l > 0 {
+		n += 1 + l + sovBertyaccount(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetUsername) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetUsername_Request) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetUsername_Reply) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Username)
 	if l > 0 {
 		n += 1 + l + sovBertyaccount(uint64(l))
 	}
@@ -6457,6 +7238,394 @@ func (m *ImportAccount_Reply) Unmarshal(dAtA []byte) error {
 	return nil
 }
 
+func (m *ImportAccountWithProgress) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowBertyaccount
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ImportAccountWithProgress: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ImportAccountWithProgress: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipBertyaccount(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+
+func (m *ImportAccountWithProgress_Request) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowBertyaccount
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Request: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Request: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AccountID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowBertyaccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AccountID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AccountName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowBertyaccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AccountName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field BackupPath", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowBertyaccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.BackupPath = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Args", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowBertyaccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Args = append(m.Args, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field LoggerFilters", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowBertyaccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.LoggerFilters = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipBertyaccount(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+
+func (m *ImportAccountWithProgress_Reply) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowBertyaccount
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Reply: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Reply: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Progress", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowBertyaccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Progress == nil {
+				m.Progress = &protocoltypes.Progress{}
+			}
+			if err := m.Progress.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AccountMetadata", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowBertyaccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.AccountMetadata == nil {
+				m.AccountMetadata = &AccountMetadata{}
+			}
+			if err := m.AccountMetadata.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipBertyaccount(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+
 func (m *CreateAccount) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -7839,6 +9008,194 @@ func (m *LogfileList_Reply_Logfile) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Errs = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipBertyaccount(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+
+func (m *GetUsername) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowBertyaccount
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetUsername: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetUsername: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipBertyaccount(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+
+func (m *GetUsername_Request) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowBertyaccount
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Request: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Request: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipBertyaccount(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+
+func (m *GetUsername_Reply) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowBertyaccount
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Reply: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Reply: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Username", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowBertyaccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthBertyaccount
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Username = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

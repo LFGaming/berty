@@ -47,6 +47,11 @@ const $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $
                     requestType: "ImportAccount.Request",
                     responseType: "ImportAccount.Reply"
                   },
+                  ImportAccountWithProgress: {
+                    requestType: "ImportAccountWithProgress.Request",
+                    responseType: "ImportAccountWithProgress.Reply",
+                    responseStream: true
+                  },
                   CreateAccount: {
                     requestType: "CreateAccount.Request",
                     responseType: "CreateAccount.Reply"
@@ -62,6 +67,10 @@ const $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $
                   LogfileList: {
                     requestType: "LogfileList.Request",
                     responseType: "LogfileList.Reply"
+                  },
+                  GetUsername: {
+                    requestType: "GetUsername.Request",
+                    responseType: "GetUsername.Reply"
                   }
                 }
               },
@@ -268,6 +277,51 @@ const $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $
                   }
                 }
               },
+              ImportAccountWithProgress: {
+                fields: {},
+                nested: {
+                  Request: {
+                    fields: {
+                      accountId: {
+                        type: "string",
+                        id: 1,
+                        options: {
+                          "(gogoproto.customname)": "AccountID"
+                        }
+                      },
+                      accountName: {
+                        type: "string",
+                        id: 2
+                      },
+                      backupPath: {
+                        type: "string",
+                        id: 3
+                      },
+                      args: {
+                        rule: "repeated",
+                        type: "string",
+                        id: 4
+                      },
+                      loggerFilters: {
+                        type: "string",
+                        id: 5
+                      }
+                    }
+                  },
+                  Reply: {
+                    fields: {
+                      progress: {
+                        type: "berty.protocol.v1.Progress",
+                        id: 1
+                      },
+                      accountMetadata: {
+                        type: "AccountMetadata",
+                        id: 2
+                      }
+                    }
+                  }
+                }
+              },
               CreateAccount: {
                 fields: {},
                 nested: {
@@ -428,6 +482,22 @@ const $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $
                             id: 8
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              },
+              GetUsername: {
+                fields: {},
+                nested: {
+                  Request: {
+                    fields: {}
+                  },
+                  Reply: {
+                    fields: {
+                      username: {
+                        type: "string",
+                        id: 1
                       }
                     }
                   }
@@ -3455,10 +3525,6 @@ const $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $
                     requestType: "BannerQuote.Request",
                     responseType: "BannerQuote.Reply"
                   },
-                  GetUsername: {
-                    requestType: "GetUsername.Request",
-                    responseType: "GetUsername.Reply"
-                  },
                   InstanceExportData: {
                     requestType: "InstanceExportData.Request",
                     responseType: "InstanceExportData.Reply",
@@ -3481,6 +3547,15 @@ const $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $
                   MessageSearch: {
                     requestType: "MessageSearch.Request",
                     responseType: "MessageSearch.Reply"
+                  },
+                  TyberHostSearch: {
+                    requestType: "TyberHostSearch.Request",
+                    responseType: "TyberHostSearch.Reply",
+                    responseStream: true
+                  },
+                  TyberHostAttach: {
+                    requestType: "TyberHostAttach.Request",
+                    responseType: "TyberHostAttach.Reply"
                   }
                 }
               },
@@ -5175,22 +5250,6 @@ const $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $
                   }
                 }
               },
-              GetUsername: {
-                fields: {},
-                nested: {
-                  Request: {
-                    fields: {}
-                  },
-                  Reply: {
-                    fields: {
-                      username: {
-                        type: "string",
-                        id: 1
-                      }
-                    }
-                  }
-                }
-              },
               InstanceExportData: {
                 fields: {},
                 nested: {
@@ -5492,6 +5551,60 @@ const $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $
                       results: {
                         rule: "repeated",
                         type: "Interaction",
+                        id: 1
+                      }
+                    }
+                  }
+                }
+              },
+              TyberHostSearch: {
+                fields: {},
+                nested: {
+                  Request: {
+                    fields: {}
+                  },
+                  Reply: {
+                    fields: {
+                      hostname: {
+                        type: "string",
+                        id: 1
+                      },
+                      ipv4: {
+                        rule: "repeated",
+                        type: "string",
+                        id: 2,
+                        options: {
+                          "(gogoproto.customname)": "IPv4"
+                        }
+                      },
+                      ipv6: {
+                        rule: "repeated",
+                        type: "string",
+                        id: 3,
+                        options: {
+                          "(gogoproto.customname)": "IPv6"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              TyberHostAttach: {
+                fields: {},
+                nested: {
+                  Request: {
+                    fields: {
+                      addresses: {
+                        rule: "repeated",
+                        type: "string",
+                        id: 1
+                      }
+                    }
+                  },
+                  Reply: {
+                    fields: {
+                      address: {
+                        type: "string",
                         id: 1
                       }
                     }

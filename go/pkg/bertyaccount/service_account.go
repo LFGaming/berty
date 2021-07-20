@@ -22,6 +22,7 @@ import (
 	"berty.tech/berty/v2/go/pkg/messengertypes"
 	"berty.tech/berty/v2/go/pkg/protocoltypes"
 	"berty.tech/berty/v2/go/pkg/tyber"
+	"berty.tech/berty/v2/go/pkg/username"
 )
 
 const accountMetafileName = "account_meta"
@@ -76,26 +77,14 @@ func (s *service) openAccount(req *OpenAccount_Request, prog *progress.Progress)
 
 	// setup manager logger
 	prog.Get("setup-logger").SetAsCurrent()
-	var logger *zap.Logger
+	streams := []logutil.Stream(nil)
 	{
-		streams := []logutil.Stream{}
-		{
-			logfileDir := filepath.Join(accountStorePath, "logs")
-			fileStream := logutil.NewFileStream("*", "json", logfileDir, "mobile")
-			streams = append(streams, fileStream)
-		}
-
 		if req.LoggerFilters == "" {
 			req.LoggerFilters = "debug+:bty*,-*.grpc warn+:*.grpc error+:*"
 		}
-		nativeStream := logutil.NewCustomStream(req.LoggerFilters, s.logger)
-		streams = append(streams, nativeStream)
-		zapLogger, loggerCleanup, err := logutil.NewLogger(streams...)
-		if err != nil {
-			return nil, errcode.TODO.Wrap(err)
-		}
-		errCleanup = u.CombineFuncs(errCleanup, loggerCleanup)
-		logger = zapLogger
+
+		nativeLoggerStream := logutil.NewCustomStream(req.LoggerFilters, s.logger)
+		streams = append(streams, nativeLoggerStream)
 	}
 	s.logger.Info("opening account", zap.Strings("args", args), zap.String("account-id", req.AccountID))
 
@@ -104,7 +93,7 @@ func (s *service) openAccount(req *OpenAccount_Request, prog *progress.Progress)
 	var initManager *initutil.Manager
 	{
 		var err error
-		if initManager, err = s.openManager(logger, args...); err != nil {
+		if initManager, err = s.openManager(streams, args...); err != nil {
 			return nil, errcode.ErrBertyAccountManagerOpen.Wrap(err)
 		}
 	}
@@ -204,7 +193,11 @@ func (s *service) OpenAccountWithProgress(req *OpenAccountWithProgress_Request, 
 	s.muService.Lock()
 	defer s.muService.Unlock()
 
-	endSection := tyber.SimpleSection(server.Context(), s.logger, fmt.Sprintf("Opening account %s with progress (AccountService)", req.AccountID))
+	endSection := tyber.SimpleSection(
+		server.Context(),
+		s.logger,
+		fmt.Sprintf("Opening account %s with progress (AccountService)", req.AccountID),
+	)
 	defer func() { endSection(err) }()
 
 	prog := progress.New()
@@ -328,8 +321,14 @@ func (s *service) CloseAccountWithProgress(req *CloseAccountWithProgress_Request
 	return nil
 }
 
-func (s *service) openManager(logger *zap.Logger, args ...string) (*initutil.Manager, error) {
-	manager := initutil.Manager{}
+func (s *service) openManager(defaultLoggerStreams []logutil.Stream, args ...string) (*initutil.Manager, error) {
+	manager, err := initutil.New(context.Background(), &initutil.ManagerOpts{
+		DoNotSetDefaultDir:   true,
+		DefaultLoggerStreams: defaultLoggerStreams,
+	})
+	if err != nil {
+		panic(err)
+	}
 
 	// configure flagset options
 	fs := flag.NewFlagSet("account", flag.ContinueOnError)
@@ -339,7 +338,7 @@ func (s *service) openManager(logger *zap.Logger, args ...string) (*initutil.Man
 	manager.SetupEmptyGRPCListenersFlags(fs)
 
 	// manager.SetupMetricsFlags(fs)
-	err := fs.Parse(args)
+	err = fs.Parse(args)
 	if err != nil {
 		return nil, errcode.ErrBertyAccountInvalidCLIArgs.Wrap(err)
 	}
@@ -353,12 +352,11 @@ func (s *service) openManager(logger *zap.Logger, args ...string) (*initutil.Man
 	}
 
 	// set custom drivers
-	manager.SetLogger(logger)
 	manager.SetNotificationManager(s.notifManager)
 	manager.SetBleDriver(s.bleDriver)
 	manager.SetNBDriver(s.nbDriver)
 
-	return &manager, nil
+	return manager, nil
 }
 
 func (s *service) ListAccounts(_ context.Context, _ *ListAccounts_Request) (*ListAccounts_Reply, error) {
@@ -423,7 +421,11 @@ func (s *service) DeleteAccount(ctx context.Context, request *DeleteAccount_Requ
 	s.muService.Lock()
 	defer s.muService.Unlock()
 
-	endSection := tyber.SimpleSection(ctx, s.logger, fmt.Sprintf("Deleting account %s (AccountService)", request.AccountID))
+	endSection := tyber.SimpleSection(
+		ctx,
+		s.logger,
+		fmt.Sprintf("Deleting account %s (AccountService)", request.AccountID),
+	)
 	defer func() { endSection(err) }()
 
 	if s.initManager != nil {
@@ -506,17 +508,107 @@ func (s *service) createAccountMetadata(accountID string, name string) (*Account
 	return meta, nil
 }
 
+func (s *service) ImportAccountWithProgress(req *ImportAccountWithProgress_Request, server AccountService_ImportAccountWithProgressServer) (err error) {
+	s.muService.Lock()
+	defer s.muService.Unlock()
+
+	endSection := tyber.SimpleSection(
+		server.Context(),
+		s.logger,
+		fmt.Sprintf("Importing account %q from path %q with progress (AccountService)",
+			req.GetAccountID(),
+			req.GetBackupPath(),
+		),
+	)
+	defer func() { endSection(err) }()
+
+	prog := progress.New()
+	defer prog.Close()
+	ch := prog.Subscribe()
+	done := make(chan bool)
+
+	go func() {
+		for step := range ch {
+			_ = step
+			snapshot := prog.Snapshot()
+			err := server.Send(&ImportAccountWithProgress_Reply{
+				Progress: &protocoltypes.Progress{
+					State:     string(snapshot.State),
+					Doing:     snapshot.Doing,
+					Progress:  float32(snapshot.Progress),
+					Completed: uint64(snapshot.Completed),
+					Total:     uint64(snapshot.Total),
+					Delay:     uint64(snapshot.TotalDuration.Microseconds()),
+				},
+			})
+			if err != nil {
+				// not sure it is worth logging something here
+				break
+			}
+		}
+		done <- true
+	}()
+
+	typed := ImportAccount_Request{
+		AccountName:   req.GetAccountName(),
+		BackupPath:    req.GetBackupPath(),
+		Args:          req.GetArgs(),
+		AccountID:     req.GetAccountID(),
+		LoggerFilters: req.GetLoggerFilters(),
+	}
+	ret, err := s.importAccount(server.Context(), &typed, prog)
+	if err != nil {
+		return errcode.TODO.Wrap(err)
+	}
+
+	// wait
+	<-done
+
+	// send reply
+	{
+		err = server.Send(&ImportAccountWithProgress_Reply{
+			AccountMetadata: ret.AccountMetadata,
+		})
+		if err != nil {
+			return errcode.TODO.Wrap(err)
+		}
+	}
+
+	return nil
+}
+
 func (s *service) ImportAccount(ctx context.Context, req *ImportAccount_Request) (_ *ImportAccount_Reply, err error) {
 	s.muService.Lock()
 	defer s.muService.Unlock()
 
-	endSection := tyber.SimpleSection(ctx, s.logger, fmt.Sprintf("Importing account '%s' with id '%s' (AccountService)", req.AccountName, req.AccountID))
+	endSection := tyber.SimpleSection(
+		ctx,
+		s.logger,
+		fmt.Sprintf("Importing account %q with id %q (AccountService)",
+			req.AccountName, req.AccountID,
+		),
+	)
 	defer func() { endSection(err) }()
 
+	ret, err := s.importAccount(ctx, req, nil)
+	if err != nil {
+		return nil, errcode.TODO.Wrap(err)
+	}
+
+	return ret, nil
+}
+
+func (s *service) importAccount(ctx context.Context, req *ImportAccount_Request, prog *progress.Progress) (_ *ImportAccount_Reply, err error) {
+	if prog == nil {
+		prog = progress.New()
+		defer prog.Close()
+	}
+	// FIXME: add import specific steps
+
+	// check input
 	if req.BackupPath == "" {
 		return nil, errcode.ErrBertyAccountNoBackupSpecified
 	}
-
 	if stat, err := os.Stat(req.BackupPath); err != nil {
 		return nil, errcode.ErrBertyAccountDataNotFound.Wrap(err)
 	} else if stat.IsDir() {
@@ -530,7 +622,7 @@ func (s *service) ImportAccount(ctx context.Context, req *ImportAccount_Request)
 		AccountName:   req.AccountName,
 		Args:          append(req.Args, "-node.restore-export-path", req.BackupPath),
 		LoggerFilters: req.LoggerFilters,
-	})
+	}, prog)
 	if err != nil {
 		return nil, err
 	}
@@ -560,7 +652,13 @@ func (s *service) ImportAccount(ctx context.Context, req *ImportAccount_Request)
 	}, nil
 }
 
-func (s *service) createAccount(req *CreateAccount_Request) (*AccountMetadata, error) {
+func (s *service) createAccount(req *CreateAccount_Request, prog *progress.Progress) (*AccountMetadata, error) {
+	if prog == nil {
+		prog = progress.New()
+		defer prog.Close()
+	}
+	// FIXME: add create specific steps
+
 	if req.AccountID != "" {
 		if _, err := s.getAccountMetaForName(req.AccountID); err == nil {
 			return nil, errcode.ErrBertyAccountAlreadyExists
@@ -570,22 +668,22 @@ func (s *service) createAccount(req *CreateAccount_Request) (*AccountMetadata, e
 
 		req.AccountID, err = s.generateNewAccountID()
 		if err != nil {
-			return nil, err
+			return nil, errcode.TODO.Wrap(err)
 		}
 	}
 
 	_, err := s.createAccountMetadata(req.AccountID, req.AccountName)
 	if err != nil {
-		return nil, err
+		return nil, errcode.TODO.Wrap(err)
 	}
 
 	meta, err := s.openAccount(&OpenAccount_Request{
 		Args:          req.Args,
 		AccountID:     req.AccountID,
 		LoggerFilters: req.LoggerFilters,
-	}, nil)
+	}, prog)
 	if err != nil {
-		return nil, err
+		return nil, errcode.TODO.Wrap(err)
 	}
 
 	return meta, nil
@@ -595,10 +693,15 @@ func (s *service) CreateAccount(ctx context.Context, req *CreateAccount_Request)
 	s.muService.Lock()
 	defer s.muService.Unlock()
 
-	endSection := tyber.SimpleSection(ctx, s.logger, fmt.Sprintf("Creating account '%s' with id '%s' (AccountService)", req.GetAccountName(), req.GetAccountID()))
+	endSection := tyber.SimpleSection(ctx,
+		s.logger,
+		fmt.Sprintf("Creating account '%s' with id '%s' (AccountService)",
+			req.GetAccountName(), req.GetAccountID(),
+		),
+	)
 	defer func() { endSection(err) }()
 
-	meta, err := s.createAccount(req)
+	meta, err := s.createAccount(req, nil)
 	if err != nil {
 		return nil, errcode.ErrBertyAccountCreationFailed.Wrap(err)
 	}
@@ -644,7 +747,11 @@ func (s *service) UpdateAccount(ctx context.Context, req *UpdateAccount_Request)
 	s.muService.Lock()
 	defer s.muService.Unlock()
 
-	endSection := tyber.SimpleSection(ctx, s.logger, fmt.Sprintf("Updating account %s (AccountService)", req.AccountID))
+	endSection := tyber.SimpleSection(
+		ctx,
+		s.logger,
+		fmt.Sprintf("Updating account %s (AccountService)", req.AccountID),
+	)
 	defer func() { endSection(err) }()
 
 	meta, err := s.updateAccount(req)
@@ -654,6 +761,12 @@ func (s *service) UpdateAccount(ctx context.Context, req *UpdateAccount_Request)
 
 	return &UpdateAccount_Reply{
 		AccountMetadata: meta,
+	}, nil
+}
+
+func (s *service) GetUsername(_ context.Context, _ *GetUsername_Request) (_ *GetUsername_Reply, err error) {
+	return &GetUsername_Reply{
+		Username: username.GetUsername(),
 	}, nil
 }
 
