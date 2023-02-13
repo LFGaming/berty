@@ -90,7 +90,7 @@ const ProfileButton: React.FC<{ show: () => void }> = ({ show }) => {
 							padding.scale(8),
 							border.radius.scale(100),
 							{
-								backgroundColor: '#EDEDED',
+								backgroundColor: colors['positive-asset'],
 								alignItems: 'center',
 								justifyContent: 'center',
 								flexDirection: 'row',
